@@ -19,4 +19,39 @@ public ValidatableResponse authUser(User user) {
                 .post(USER_PATH)
                 .then().log().all();
     }
+    public ValidatableResponse authUserWithIncorrectPassword(User user) {
+        return spec()
+                .body(user)
+                .when()
+                .post(USER_PATH)
+                .then().log().all();
+    }
+    public ValidatableResponse authUserWithIncorrectUsernameAndPassword(User user) {
+        return spec()
+                .body(user)
+                .when()
+                .post(USER_PATH)
+                .then().log().all();
+    }
+    public ValidatableResponse authUserWithoutUsername(User user) {
+        return spec()
+                .body(user)
+                .when()
+                .post(USER_PATH)
+                .then().log().all();
+    }
+    public ValidatableResponse authUserWithoutPassword(User user) {
+        return spec()
+                .body(user)
+                .when()
+                .post(USER_PATH)
+                .then().log().all();
+    }
+    public ValidatableResponse authUserWithoutUsernameAndPassword(User user) {
+        return spec()
+                .body(user)
+                .when()
+                .post(USER_PATH)
+                .then().log().all();
+    }
 }

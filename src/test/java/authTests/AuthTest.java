@@ -9,11 +9,7 @@ import pomAuth.UserResponse;
 public class AuthTest {
 private final UserRequest userRequest = new UserRequest();
 private final UserResponse userResponse = new UserResponse();
-static User user;
 static String token;
-public String getToken() {
-    return token;
-    }
     @Test
     public void authUser() {
     String username = "admin";
@@ -31,5 +27,45 @@ public String getToken() {
         user.setPassword("password123");
         ValidatableResponse authResponse = userRequest.authUserWithIncorrectUsername(user);
         userResponse.authSuccessWithIncorrectUsername(authResponse, user);
+    }
+    // Тест упадет, так как статус код = 200 ОК
+    @Test
+    public void authUserIncorrectPassword() {
+        User user = User.random();
+        user.setUsername("admin");
+        ValidatableResponse authResponse = userRequest.authUserWithIncorrectPassword(user);
+        userResponse.authSuccessWithIncorrectPassword(authResponse, user);
+    }
+    // Тест упадет, так как статус код = 200 ОК
+    @Test
+    public void authUserIncorrectUsernameAndPassword() {
+        User user = User.random();
+        ValidatableResponse authResponse = userRequest.authUserWithIncorrectUsernameAndPassword(user);
+        userResponse.authSuccessWithIncorrectUsernameAndPassword(authResponse, user);
+    }
+    // Тест упадет, так как статус код = 200 ОК
+    @Test
+    public void authUserWithoutUsername() {
+        User user = User.random();
+        user.setUsername("");
+        ValidatableResponse authResponse = userRequest.authUserWithoutUsername(user);
+        userResponse.authSuccessWithoutUsername(authResponse, user);
+    }
+    // Тест упадет, так как статус код = 200 ОК
+    @Test
+    public void authUserWithoutPassword() {
+        User user = User.random();
+        user.setPassword("");
+        ValidatableResponse authResponse = userRequest.authUserWithoutPassword(user);
+        userResponse.authSuccessWithoutPassword(authResponse, user);
+    }
+    // Тест упадет, так как статус код = 200 ОК
+    @Test
+    public void authUserWithoutUsernameAndPassword() {
+        User user = new User();
+        user.setPassword("");
+        user.setUsername("");
+        ValidatableResponse authResponse = userRequest.authUserWithoutUsernameAndPassword(user);
+        userResponse.authSuccessWithoutUsernameAndPassword(authResponse, user);
     }
 }

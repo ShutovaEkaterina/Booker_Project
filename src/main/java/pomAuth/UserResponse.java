@@ -23,6 +23,51 @@ public class UserResponse {
                 .getString("reason");
         assertEquals("Bad credentials", reason);
     }
+    public void authSuccessWithIncorrectPassword(ValidatableResponse authResponse, User user) {
+        String reason = authResponse
+                .assertThat()
+                .statusCode(HttpURLConnection.HTTP_BAD_REQUEST)
+                .extract()
+                .jsonPath()
+                .getString("reason");
+        assertEquals("Bad credentials", reason);
+    }
+    public void authSuccessWithIncorrectUsernameAndPassword(ValidatableResponse authResponse, User user) {
+        String reason = authResponse
+                .assertThat()
+                .statusCode(HttpURLConnection.HTTP_BAD_REQUEST)
+                .extract()
+                .jsonPath()
+                .getString("reason");
+        assertEquals("Bad credentials", reason);
+    }
+    public void authSuccessWithoutUsername(ValidatableResponse authResponse, User user) {
+        String reason = authResponse
+                .assertThat()
+                .statusCode(HttpURLConnection.HTTP_BAD_REQUEST)
+                .extract()
+                .jsonPath()
+                .getString("reason");
+        assertEquals("Bad credentials", reason);
+    }
+    public void authSuccessWithoutPassword(ValidatableResponse authResponse, User user) {
+        String reason = authResponse
+                .assertThat()
+                .statusCode(HttpURLConnection.HTTP_BAD_REQUEST)
+                .extract()
+                .jsonPath()
+                .getString("reason");
+        assertEquals("Bad credentials", reason);
+    }
+    public void authSuccessWithoutUsernameAndPassword(ValidatableResponse authResponse, User user) {
+        String reason = authResponse
+                .assertThat()
+                .statusCode(HttpURLConnection.HTTP_BAD_REQUEST)
+                .extract()
+                .jsonPath()
+                .getString("reason");
+        assertEquals("Bad credentials", reason);
+    }
 
     public String extractToken(ValidatableResponse response) {
         return response.extract().jsonPath().getString("token");
