@@ -13,4 +13,11 @@ public class AllBookingsTest {
         ValidatableResponse getAllBookingsResponse = allBookingRequest.getAllBookings();
         allBookingsResponse.allBookingsSuccess(getAllBookingsResponse);
     }
+    @Test
+    public void allBookingsGetFilterName() {
+        String firstname = "sally";
+        String lastname = "brown";
+        ValidatableResponse getAllBookingsResponse = allBookingRequest.getAllBookingsNameFilter(firstname, lastname);
+        allBookingsResponse.allBookingsFilterName(getAllBookingsResponse);
+    }
 }

@@ -11,4 +11,12 @@ public class AllBookingRequest extends Basic {
                 .get(ALL_BOOKING_PATH)
                 .then().log().all();
     }
+    public ValidatableResponse getAllBookingsNameFilter(String firstname, String lastname) {
+        return spec()
+                .queryParam("firstname", firstname)
+                .queryParam("lastname", lastname)
+                .when()
+                .get(ALL_BOOKING_PATH)
+                .then().log().all();
+    }
 }
