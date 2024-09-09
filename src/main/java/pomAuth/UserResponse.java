@@ -8,6 +8,7 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertEquals;
 
 public class UserResponse {
+    // todo проверить неиспозьзуемые параметры и методы
     public void authSuccess(ValidatableResponse authResponse, User user) {
         authResponse
                 .assertThat()

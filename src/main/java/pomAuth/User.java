@@ -2,19 +2,21 @@ package pomAuth;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
+//отступы, название пакетов
+
 public class User {
-private String username;
-private String password;
+    private String username;
+    private String password;
 
-public User() {}
+    public User() {}
 
-public User(String username, String password) {
-    this.username = username;
-    this.password = password;
-}
-public static User random() {
-    return new User(RandomStringUtils.randomAlphabetic(5,10), RandomStringUtils.randomAlphabetic(5,10));
-}
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+    public static User random() {
+        return new User(RandomStringUtils.randomAlphabetic(5,10), RandomStringUtils.randomAlphabetic(5,10));
+    }
 
     public String getUsername() {
         return username;

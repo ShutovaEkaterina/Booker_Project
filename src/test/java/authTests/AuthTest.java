@@ -10,6 +10,7 @@ public class AuthTest {
 private final UserRequest userRequest = new UserRequest();
 private final UserResponse userResponse = new UserResponse();
 static String token;
+//todo убрать получение токена
     @Test
     public void authUser() {
     String username = "admin";
@@ -62,6 +63,8 @@ static String token;
     // Тест упадет, так как статус код = 200 ОК
     @Test
     public void authUserWithoutUsernameAndPassword() {
+        // todo переделать на нужный конструктор
+        // todo убрать рандом
         User user = new User();
         user.setPassword("");
         user.setUsername("");
