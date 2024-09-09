@@ -1,4 +1,4 @@
-package pomAllBookings;
+package allBookingsPackage;
 
 import io.restassured.response.ValidatableResponse;
 
@@ -15,42 +15,49 @@ public class AllBookingsResponse {
                 .body("size()", greaterThan(0))
                 .body("[0].bookingid", notNullValue());
     }
+
     public void allBookingsFilterName (ValidatableResponse getAllBookingsResponse) {
         getAllBookingsResponse
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
                 .body("size()", either(greaterThan(0)).or(equalTo(0)));
     }
+
     public void allBookingsFilterFirstname (ValidatableResponse getAllBookingsResponse) {
         getAllBookingsResponse
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
                 .body("size()", either(greaterThan(0)).or(equalTo(0)));
     }
+
     public void allBookingsFilterLastname (ValidatableResponse getAllBookingsResponse) {
         getAllBookingsResponse
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
                 .body("size()", either(greaterThan(0)).or(equalTo(0)));
     }
+
     public void allBookingsFilterDate (ValidatableResponse getAllBookingsResponse) {
         getAllBookingsResponse
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
                 .body("size()", either(greaterThan(0)).or(equalTo(0)));
     }
+
     public void allBookingsCheckinDate (ValidatableResponse getAllBookingsResponse) {
         getAllBookingsResponse
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
                 .body("size()", either(greaterThan(0)).or(equalTo(0)));
     }
+
     public void allBookingsCheckoutDate (ValidatableResponse getAllBookingsResponse) {
         getAllBookingsResponse
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
                 .body("size()", either(greaterThan(0)).or(equalTo(0)));
     }
+
     public void allBookingsFilterDateWrong (ValidatableResponse getAllBookingsResponse) {
         String reason = getAllBookingsResponse
                 .assertThat()

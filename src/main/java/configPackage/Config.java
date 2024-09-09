@@ -1,11 +1,11 @@
-package basicStaff;
+package configPackage;
 
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 
 import static io.restassured.RestAssured.given;
 //название класса
-public class Basic {
+public class Config {
     protected static final String BASE_URL = "https://restful-booker.herokuapp.com";
     public RequestSpecification spec() {
         return given()

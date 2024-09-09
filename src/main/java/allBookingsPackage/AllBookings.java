@@ -1,4 +1,4 @@
-package pomAllBookings;
+package allBookingsPackage;
 
 import java.util.Date;
 

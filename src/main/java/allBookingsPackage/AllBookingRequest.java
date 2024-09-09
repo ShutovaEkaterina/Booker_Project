@@ -1,18 +1,18 @@
-package pomAllBookings;
+package allBookingsPackage;
 
-import basicStaff.Basic;
+import configPackage.Config;
 import io.restassured.response.ValidatableResponse;
 
-import java.util.Date;
-
-public class AllBookingRequest extends Basic {
+public class AllBookingRequest extends Config {
     private static final String ALL_BOOKING_PATH = "/booking";
+
     public ValidatableResponse getAllBookings() {
         return spec()
                 .when()
                 .get(ALL_BOOKING_PATH)
                 .then().log().all();
     }
+
     public ValidatableResponse getAllBookingsNameFilter(String firstname, String lastname) {
         return spec()
                 .queryParam("firstname", firstname)
@@ -21,6 +21,7 @@ public class AllBookingRequest extends Basic {
                 .get(ALL_BOOKING_PATH)
                 .then().log().all();
     }
+
     public ValidatableResponse getAllBookingsFirstnameFilter(String firstname) {
         return spec()
                 .queryParam("firstname", firstname)
@@ -28,6 +29,7 @@ public class AllBookingRequest extends Basic {
                 .get(ALL_BOOKING_PATH)
                 .then().log().all();
     }
+
     public ValidatableResponse getAllBookingsLastnameFilter(String lastname) {
         return spec()
                 .queryParam("lastname", lastname)
@@ -35,6 +37,7 @@ public class AllBookingRequest extends Basic {
                 .get(ALL_BOOKING_PATH)
                 .then().log().all();
     }
+
     public ValidatableResponse getAllBookingsDateFilter(String checkin, String checkout) {
         return spec()
                 .queryParam("checkin", checkin)
@@ -43,6 +46,7 @@ public class AllBookingRequest extends Basic {
                 .get(ALL_BOOKING_PATH)
                 .then().log().all();
     }
+
     public ValidatableResponse getAllBookingsCheckinDate(String checkin) {
         return spec()
                 .queryParam("checkin", checkin)
@@ -50,6 +54,7 @@ public class AllBookingRequest extends Basic {
                 .get(ALL_BOOKING_PATH)
                 .then().log().all();
     }
+
     public ValidatableResponse getAllBookingsCheckoutDate(String checkout) {
         return spec()
                 .queryParam("checkout", checkout)
@@ -57,6 +62,7 @@ public class AllBookingRequest extends Basic {
                 .get(ALL_BOOKING_PATH)
                 .then().log().all();
     }
+
     public ValidatableResponse getAllBookingsDateFilterWrong(String checkin, String checkout) {
         return spec()
                 .queryParam("checkin", checkin)
