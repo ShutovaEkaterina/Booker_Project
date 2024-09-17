@@ -1,19 +1,10 @@
-package allBookingsPackage;
-public class AllBookings {
+package bookingsIdPackage;
+
+public class BookingsId {
     private String firstname;
     private String lastname;
     private String checkin;
     private String checkout;
-
-    public AllBookings(String firstname, String lastname, String checkin, String checkout) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.checkin = checkin;
-        this.checkout = checkout;
-    }
-
-    public AllBookings() {
-    }
 
     public String getFirstname() {
         return firstname;
@@ -45,5 +36,15 @@ public class AllBookings {
 
     public void setCheckout(String checkout) {
         this.checkout = checkout;
+    }
+
+    public BookingsId(String firstname, String lastname, String checkin, String checkout) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.checkin = checkin;
+        this.checkout = checkout;
+    }
+
+    public BookingsId() {
     }
 }

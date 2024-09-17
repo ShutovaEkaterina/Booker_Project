@@ -1,4 +1,4 @@
-package authTests;
+package allTests;
 
 import io.restassured.response.ValidatableResponse;
 import org.junit.Test;

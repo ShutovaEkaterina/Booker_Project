@@ -4,12 +4,12 @@ import configPackage.Config;
 import io.restassured.response.ValidatableResponse;
 
 public class AllBookingRequest extends Config {
-    private static final String ALL_BOOKING_PATH = "/booking";
+
 
     public ValidatableResponse getAllBookings() {
         return spec()
                 .when()
-                .get(ALL_BOOKING_PATH)
+                .get(BOOKING_PATH)
                 .then().log().all();
     }
 
@@ -18,7 +18,7 @@ public class AllBookingRequest extends Config {
                 .queryParam("firstname", firstname)
                 .queryParam("lastname", lastname)
                 .when()
-                .get(ALL_BOOKING_PATH)
+                .get(BOOKING_PATH)
                 .then().log().all();
     }
 
@@ -26,7 +26,7 @@ public class AllBookingRequest extends Config {
         return spec()
                 .queryParam("firstname", firstname)
                 .when()
-                .get(ALL_BOOKING_PATH)
+                .get(BOOKING_PATH)
                 .then().log().all();
     }
 
@@ -34,7 +34,7 @@ public class AllBookingRequest extends Config {
         return spec()
                 .queryParam("lastname", lastname)
                 .when()
-                .get(ALL_BOOKING_PATH)
+                .get(BOOKING_PATH)
                 .then().log().all();
     }
 
@@ -43,7 +43,7 @@ public class AllBookingRequest extends Config {
                 .queryParam("checkin", checkin)
                 .queryParam("checkout", checkout)
                 .when()
-                .get(ALL_BOOKING_PATH)
+                .get(BOOKING_PATH)
                 .then().log().all();
     }
 
@@ -51,7 +51,7 @@ public class AllBookingRequest extends Config {
         return spec()
                 .queryParam("checkin", checkin)
                 .when()
-                .get(ALL_BOOKING_PATH)
+                .get(BOOKING_PATH)
                 .then().log().all();
     }
 
@@ -59,7 +59,7 @@ public class AllBookingRequest extends Config {
         return spec()
                 .queryParam("checkout", checkout)
                 .when()
-                .get(ALL_BOOKING_PATH)
+                .get(BOOKING_PATH)
                 .then().log().all();
     }
 
@@ -68,7 +68,7 @@ public class AllBookingRequest extends Config {
                 .queryParam("checkin", checkin)
                 .queryParam("checkout", checkout)
                 .when()
-                .get(ALL_BOOKING_PATH)
+                .get(BOOKING_PATH)
                 .then().log().all();
     }
 }
