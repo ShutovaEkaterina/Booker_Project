@@ -8,58 +8,67 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertEquals;
 
 public class AllBookingsResponse {
-    public void allBookingsSuccess(ValidatableResponse getAllBookingsResponse) {
-        getAllBookingsResponse
+    public void assertAllBookingsWithoutParams(ValidatableResponse response) {
+        response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
                 .body("size()", greaterThan(0))
                 .body("[0].bookingid", notNullValue());
     }
 
-    public void allBookingsFilterName (ValidatableResponse getAllBookingsResponse) {
-        getAllBookingsResponse
+    // assertAllBookingsEmptyByFirstNameAndLastName
+    // assertAllBookingsEmptyByNonExistingUser
+    public void assertAllBookingsEmptyByNoneExistingUser(ValidatableResponse response) {
+        response
+                .assertThat()
+                .statusCode(HttpURLConnection.HTTP_OK)
+                .body("size()", equalTo(0));
+    }
+
+    public void assertAllBookingsByExistingUser(ValidatableResponse response) {
+        response
+                .assertThat()
+                .statusCode(HttpURLConnection.HTTP_OK)
+                .body("size()", greaterThan(0));
+    }
+
+    public void assertAllBookingsByFirstnameFilter(ValidatableResponse response) {
+        response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
                 .body("size()", either(greaterThan(0)).or(equalTo(0)));
     }
 
-    public void allBookingsFilterFirstname (ValidatableResponse getAllBookingsResponse) {
-        getAllBookingsResponse
+    public void assertAllBookingsByLastnameFilter(ValidatableResponse response) {
+        response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
                 .body("size()", either(greaterThan(0)).or(equalTo(0)));
     }
 
-    public void allBookingsFilterLastname (ValidatableResponse getAllBookingsResponse) {
-        getAllBookingsResponse
+    public void assertAllBookingsByDates(ValidatableResponse response) {
+        response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
                 .body("size()", either(greaterThan(0)).or(equalTo(0)));
     }
 
-    public void allBookingsFilterDate (ValidatableResponse getAllBookingsResponse) {
-        getAllBookingsResponse
+    public void assertAllBookingsByCheckinFilter(ValidatableResponse response) {
+        response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
                 .body("size()", either(greaterThan(0)).or(equalTo(0)));
     }
 
-    public void allBookingsCheckinDate (ValidatableResponse getAllBookingsResponse) {
-        getAllBookingsResponse
+    public void assertAllBookingsByCheckoutFilter(ValidatableResponse response) {
+        response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
                 .body("size()", either(greaterThan(0)).or(equalTo(0)));
     }
 
-    public void allBookingsCheckoutDate (ValidatableResponse getAllBookingsResponse) {
-        getAllBookingsResponse
-                .assertThat()
-                .statusCode(HttpURLConnection.HTTP_OK)
-                .body("size()", either(greaterThan(0)).or(equalTo(0)));
-    }
-
-    public void allBookingsFilterDateWrong (ValidatableResponse getAllBookingsResponse) {
-        String reason = getAllBookingsResponse
+    public void assertAllBookingsByWrongDateFilter(ValidatableResponse response) {
+        String reason = response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_BAD_REQUEST)
                 .extract()

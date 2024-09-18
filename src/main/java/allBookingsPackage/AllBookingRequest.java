@@ -6,14 +6,14 @@ import io.restassured.response.ValidatableResponse;
 public class AllBookingRequest extends Config {
 
 
-    public ValidatableResponse getAllBookings() {
+    public ValidatableResponse getAllBookingsWithoutParams() {
         return spec()
                 .when()
                 .get(BOOKING_PATH)
                 .then().log().all();
     }
 
-    public ValidatableResponse getAllBookingsNameFilter(String firstname, String lastname) {
+    public ValidatableResponse getAllBookingsByNameFilter(String firstname, String lastname) {
         return spec()
                 .queryParam("firstname", firstname)
                 .queryParam("lastname", lastname)
@@ -22,7 +22,7 @@ public class AllBookingRequest extends Config {
                 .then().log().all();
     }
 
-    public ValidatableResponse getAllBookingsFirstnameFilter(String firstname) {
+    public ValidatableResponse getAllBookingsByFirstnameFilter(String firstname) {
         return spec()
                 .queryParam("firstname", firstname)
                 .when()
@@ -30,7 +30,7 @@ public class AllBookingRequest extends Config {
                 .then().log().all();
     }
 
-    public ValidatableResponse getAllBookingsLastnameFilter(String lastname) {
+    public ValidatableResponse getAllBookingsByLastnameFilter(String lastname) {
         return spec()
                 .queryParam("lastname", lastname)
                 .when()
@@ -38,7 +38,7 @@ public class AllBookingRequest extends Config {
                 .then().log().all();
     }
 
-    public ValidatableResponse getAllBookingsDateFilter(String checkin, String checkout) {
+    public ValidatableResponse getAllBookingsByDatesFilter(String checkin, String checkout) {
         return spec()
                 .queryParam("checkin", checkin)
                 .queryParam("checkout", checkout)
@@ -47,7 +47,7 @@ public class AllBookingRequest extends Config {
                 .then().log().all();
     }
 
-    public ValidatableResponse getAllBookingsCheckinDate(String checkin) {
+    public ValidatableResponse getAllBookingsByCheckinDateFilter(String checkin) {
         return spec()
                 .queryParam("checkin", checkin)
                 .when()
@@ -55,7 +55,7 @@ public class AllBookingRequest extends Config {
                 .then().log().all();
     }
 
-    public ValidatableResponse getAllBookingsCheckoutDate(String checkout) {
+    public ValidatableResponse getAllBookingsByCheckoutDateFilter(String checkout) {
         return spec()
                 .queryParam("checkout", checkout)
                 .when()
@@ -63,7 +63,7 @@ public class AllBookingRequest extends Config {
                 .then().log().all();
     }
 
-    public ValidatableResponse getAllBookingsDateFilterWrong(String checkin, String checkout) {
+    public ValidatableResponse getAllBookingsByWrongDateFilter(String checkin, String checkout) {
         return spec()
                 .queryParam("checkin", checkin)
                 .queryParam("checkout", checkout)

@@ -14,51 +14,58 @@ public class AllBookingsTest {
     private final AllBookingsResponse allBookingsResponse = new AllBookingsResponse();
 
     @Test
-    public void allBookingsGet() {
-        ValidatableResponse getAllBookingsResponse = allBookingRequest.getAllBookings();
-        allBookingsResponse.allBookingsSuccess(getAllBookingsResponse);
+    public void testAllBookingsWithoutParams() {
+        ValidatableResponse response = allBookingRequest.getAllBookingsWithoutParams();
+        allBookingsResponse.assertAllBookingsWithoutParams(response);
     }
 
     @Test
-    public void allBookingsGetFilterName() {
-        ValidatableResponse getAllBookingsResponse = allBookingRequest.getAllBookingsNameFilter(firstname, lastname);
-        allBookingsResponse.allBookingsFilterName(getAllBookingsResponse);
+    public void testAllBookingsByNotExistingUserNameFilter() {
+        // getAllBookingsByFirstNameAndLastName
+        ValidatableResponse response = allBookingRequest.getAllBookingsByNameFilter(firstname, lastname);
+        allBookingsResponse.assertAllBookingsEmptyByNoneExistingUser(response);
     }
 
     @Test
-    public void allBookingsGetFilterFirstname() {
-        ValidatableResponse getAllBookingsResponse = allBookingRequest.getAllBookingsFirstnameFilter(firstname);
-        allBookingsResponse.allBookingsFilterFirstname(getAllBookingsResponse);
+    public void testAllBookingsByExistingUserNameFilter() {
+        ValidatableResponse response = allBookingRequest.getAllBookingsByNameFilter("Jim", "Ericsson");
+        allBookingsResponse.assertAllBookingsByExistingUser(response);
     }
 
     @Test
-    public void allBookingsGetFilterLastname() {
-        ValidatableResponse getAllBookingsResponse = allBookingRequest.getAllBookingsLastnameFilter(lastname);
-        allBookingsResponse.allBookingsFilterLastname(getAllBookingsResponse);
+    public void testAllBookingsByFirstnameFilter() {
+        ValidatableResponse response = allBookingRequest.getAllBookingsByFirstnameFilter(firstname);
+        allBookingsResponse.assertAllBookingsByFirstnameFilter(response);
     }
 
     @Test
-    public void allBookingsGetCheckinDate() {
-        ValidatableResponse getAllBookingsResponse = allBookingRequest.getAllBookingsCheckinDate(checkin);
-        allBookingsResponse.allBookingsCheckinDate(getAllBookingsResponse);
+    public void testAllBookingsByLastnameFilter() {
+        ValidatableResponse response = allBookingRequest.getAllBookingsByLastnameFilter(lastname);
+        allBookingsResponse.assertAllBookingsByLastnameFilter(response);
     }
 
     @Test
-    public void allBookingsGetCheckoutDate() {
-        ValidatableResponse getAllBookingsResponse = allBookingRequest.getAllBookingsCheckoutDate(checkout);
-        allBookingsResponse.allBookingsCheckoutDate(getAllBookingsResponse);
+    public void testAllBookingsByCheckinDateFilter() {
+        ValidatableResponse response = allBookingRequest.getAllBookingsByCheckinDateFilter(checkin);
+        allBookingsResponse.assertAllBookingsByCheckinFilter(response);
     }
 
     @Test
-    public void allBookingsGetFilterDate() {
-        ValidatableResponse getAllBookingsResponse = allBookingRequest.getAllBookingsDateFilter(checkin, checkout);
-        allBookingsResponse.allBookingsFilterDate(getAllBookingsResponse);
+    public void testAllBookingsByCheckoutDateFilter() {
+        ValidatableResponse response = allBookingRequest.getAllBookingsByCheckoutDateFilter(checkout);
+        allBookingsResponse.assertAllBookingsByCheckoutFilter(response);
+    }
+
+    @Test
+    public void testAllBookingsByDatesFilter() {
+        ValidatableResponse response = allBookingRequest.getAllBookingsByDatesFilter(checkin, checkout);
+        allBookingsResponse.assertAllBookingsByDates(response);
     }
 
    // Тест упадет, так как приходит пустой массив и статус код 200 ОК
     @Test
-    public void allBookingsGetFilterDateWrong() {
-        ValidatableResponse getAllBookingsResponse = allBookingRequest.getAllBookingsDateFilterWrong("2017-03-13", checkout);
-        allBookingsResponse.allBookingsFilterDateWrong(getAllBookingsResponse);
+    public void testAllBookingsByDateWrongFilter() {
+        ValidatableResponse response = allBookingRequest.getAllBookingsByWrongDateFilter("2017-03-13", checkout);
+        allBookingsResponse.assertAllBookingsByWrongDateFilter(response);
     }
 }
