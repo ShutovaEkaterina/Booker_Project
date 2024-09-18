@@ -7,8 +7,8 @@ import java.net.HttpURLConnection;
 import static org.hamcrest.Matchers.notNullValue;
 
 public class BookingIdResponse {
-    public void bookingExistedId(ValidatableResponse getExistedIdResponse) {
-        getExistedIdResponse
+    public void assertWithExistingBookingId(ValidatableResponse response) {
+        response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
                 .body("firstname", notNullValue())

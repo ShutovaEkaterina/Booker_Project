@@ -11,10 +11,10 @@ public class BookingIdTest {
 
 
     @Test
-    public void getBookingExistedId() {
+    public void testBookingExistedId() {
         String id = "1";
-        ValidatableResponse getExistedIdResponse = bookingsIdRequest.getBookingsExistedId(id);
-        bookingIdResponse.bookingExistedId(getExistedIdResponse);
+        ValidatableResponse response = bookingsIdRequest.getBookingsExistedId(id);
+        bookingIdResponse.assertWithExistingBookingId(response);
     }
 
 }

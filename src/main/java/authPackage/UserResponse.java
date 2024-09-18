@@ -9,15 +9,15 @@ import static org.junit.Assert.assertEquals;
 
 public class UserResponse {
     // todo проверить неиспозьзуемые параметры и методы
-    public void authSuccess(ValidatableResponse authResponse) {
-        authResponse
+    public void assertAuthWithCorrectUsernameAndPassword(ValidatableResponse response) {
+        response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
                 .body("token", notNullValue());
     }
 
-    public void authSuccessWithIncorrectUsername(ValidatableResponse authResponse) {
-        String reason = authResponse
+    public void assertAuthWithIncorrectUsername(ValidatableResponse response) {
+        String reason = response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_BAD_REQUEST)
                 .extract()
@@ -26,8 +26,8 @@ public class UserResponse {
         assertEquals("Bad credentials", reason);
     }
 
-    public void authSuccessWithIncorrectPassword(ValidatableResponse authResponse) {
-        String reason = authResponse
+    public void assertAuthWithIncorrectPassword(ValidatableResponse response) {
+        String reason = response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_BAD_REQUEST)
                 .extract()
@@ -36,8 +36,8 @@ public class UserResponse {
         assertEquals("Bad credentials", reason);
     }
 
-    public void authSuccessWithIncorrectUsernameAndPassword(ValidatableResponse authResponse) {
-        String reason = authResponse
+    public void assertAuthWithIncorrectUsernameAndPassword(ValidatableResponse response) {
+        String reason = response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_BAD_REQUEST)
                 .extract()
@@ -46,8 +46,8 @@ public class UserResponse {
         assertEquals("Bad credentials", reason);
     }
 
-    public void authSuccessWithoutUsername(ValidatableResponse authResponse) {
-        String reason = authResponse
+    public void assertAuthWithoutUsername(ValidatableResponse response) {
+        String reason = response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_BAD_REQUEST)
                 .extract()
@@ -56,8 +56,8 @@ public class UserResponse {
         assertEquals("Bad credentials", reason);
     }
 
-    public void authSuccessWithoutPassword(ValidatableResponse authResponse) {
-        String reason = authResponse
+    public void assertAuthWithoutPassword(ValidatableResponse response) {
+        String reason = response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_BAD_REQUEST)
                 .extract()
@@ -66,8 +66,8 @@ public class UserResponse {
         assertEquals("Bad credentials", reason);
     }
 
-    public void authSuccessWithoutUsernameAndPassword(ValidatableResponse authResponse) {
-        String reason = authResponse
+    public void assertAuthWithoutUsernameAndPassword(ValidatableResponse response) {
+        String reason = response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_BAD_REQUEST)
                 .extract()

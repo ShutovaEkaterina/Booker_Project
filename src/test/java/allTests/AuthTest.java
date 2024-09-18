@@ -14,59 +14,59 @@ public class AuthTest {
 
 //todo убрать получение токена
     @Test
-    public void authUser() {
+    public void testSuccessAuthUserWithCorrectUsernameAndPassword() {
         User user = new User(username, password);
-        ValidatableResponse authResponse = userRequest.authUser(user);
-        userResponse.authSuccess(authResponse);
+        ValidatableResponse response = userRequest.authUser(user);
+        userResponse.assertAuthWithCorrectUsernameAndPassword(response);
     }
 
     // Тест упадет, так как статус код = 200 ОК
    @Test
-   public void authUserIncorrectUsername() {
+   public void testAuthUserWithIncorrectUsername() {
         User user = new User("pasha", password);
-        ValidatableResponse authResponse = userRequest.authUser(user);
-        userResponse.authSuccessWithIncorrectUsername(authResponse);
+        ValidatableResponse response = userRequest.authUser(user);
+        userResponse.assertAuthWithIncorrectUsername(response);
     }
 
     // Тест упадет, так как статус код = 200 ОК
     @Test
-    public void authUserIncorrectPassword() {
+    public void testAuthUserWithIncorrectPassword() {
         User user = new User(username, "1234");
-        ValidatableResponse authResponse = userRequest.authUser(user);
-        userResponse.authSuccessWithIncorrectPassword(authResponse);
+        ValidatableResponse response = userRequest.authUser(user);
+        userResponse.assertAuthWithIncorrectPassword(response);
     }
 
     // Тест упадет, так как статус код = 200 ОК
     @Test
-    public void authUserIncorrectUsernameAndPassword() {
+    public void testAuthUserWithIncorrectUsernameAndPassword() {
         User user = new User("tamara", "123456");
-        ValidatableResponse authResponse = userRequest.authUser(user);
-        userResponse.authSuccessWithIncorrectUsernameAndPassword(authResponse);
+        ValidatableResponse response = userRequest.authUser(user);
+        userResponse.assertAuthWithIncorrectUsernameAndPassword(response);
     }
 
     // Тест упадет, так как статус код = 200 ОК
     @Test
-    public void authUserWithoutUsername() {
+    public void testAuthUserWithoutUsername() {
         User user = new User("", "password123");
-        ValidatableResponse authResponse = userRequest.authUser(user);
-        userResponse.authSuccessWithoutUsername(authResponse);
+        ValidatableResponse response = userRequest.authUser(user);
+        userResponse.assertAuthWithoutUsername(response);
     }
 
     // Тест упадет, так как статус код = 200 ОК
     @Test
-    public void authUserWithoutPassword() {
+    public void testAuthUserWithoutPassword() {
         User user = new User("admin", "");
-        ValidatableResponse authResponse = userRequest.authUser(user);
-        userResponse.authSuccessWithoutPassword(authResponse);
+        ValidatableResponse response = userRequest.authUser(user);
+        userResponse.assertAuthWithoutPassword(response);
     }
 
     // Тест упадет, так как статус код = 200 ОК
     @Test
-    public void authUserWithoutUsernameAndPassword() {
+    public void testAuthUserWithoutUsernameAndPassword() {
         // todo переделать на нужный конструктор
         // todo убрать рандом
         User user = new User();
-        ValidatableResponse authResponse = userRequest.authUser(user);
-        userResponse.authSuccessWithoutUsernameAndPassword(authResponse);
+        ValidatableResponse response = userRequest.authUser(user);
+        userResponse.assertAuthWithoutUsernameAndPassword(response);
     }
 }
