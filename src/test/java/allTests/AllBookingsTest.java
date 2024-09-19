@@ -46,7 +46,7 @@ public class AllBookingsTest {
 
     @Test
     public void testAllBookingsByCheckinDateFilter() {
-        ValidatableResponse response = allBookingRequest.getAllBookingsByCheckinDateFilter(checkin);
+        ValidatableResponse response = allBookingRequest.getAllBookingsByCheckInDateFilter(checkin);
         allBookingsResponse.assertAllBookingsByCheckinFilter(response);
     }
 

@@ -47,7 +47,7 @@ public class AllBookingRequest extends Config {
                 .then().log().all();
     }
 
-    public ValidatableResponse getAllBookingsByCheckinDateFilter(String checkin) {
+    public ValidatableResponse getAllBookingsByCheckInDateFilter(String checkin) {
         return spec()
                 .queryParam("checkin", checkin)
                 .when()

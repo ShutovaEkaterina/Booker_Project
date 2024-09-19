@@ -12,9 +12,23 @@ public class BookingIdTest {
 
     @Test
     public void testBookingExistedId() {
-        String id = "1";
-        ValidatableResponse response = bookingsIdRequest.getBookingsExistedId(id);
+        String id = "2";
+        ValidatableResponse response = bookingsIdRequest.getBookingsId(id);
         bookingIdResponse.assertWithExistingBookingId(response);
+    }
+
+    @Test
+    public void testBookingNoneExistedId() {
+        String id = "1000000000";
+        ValidatableResponse response = bookingsIdRequest.getBookingsId(id);
+        bookingIdResponse.assertWithNoneExistingBookingId(response);
+    }
+
+    @Test
+    public void testBookingNullId() {
+        String id = null;
+        ValidatableResponse response = bookingsIdRequest.getBookingsId(id);
+        bookingIdResponse.assertWithNullBookingId(response);
     }
 
 }

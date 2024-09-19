@@ -16,8 +16,6 @@ public class AllBookingsResponse {
                 .body("[0].bookingid", notNullValue());
     }
 
-    // assertAllBookingsEmptyByFirstNameAndLastName
-    // assertAllBookingsEmptyByNonExistingUser
     public void assertAllBookingsEmptyByNoneExistingUser(ValidatableResponse response) {
         response
                 .assertThat()

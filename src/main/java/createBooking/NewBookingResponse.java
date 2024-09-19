@@ -1,4 +1,4 @@
-package bookingsIdPackage;
+package createBooking;
 
 import io.restassured.response.ValidatableResponse;
 
@@ -6,8 +6,8 @@ import java.net.HttpURLConnection;
 
 import static org.hamcrest.Matchers.notNullValue;
 
-public class BookingIdResponse {
-    public void assertWithExistingBookingId(ValidatableResponse response) {
+public class NewBookingResponse {
+    public void assertSuccessCreatingBookingWithAllFields(ValidatableResponse response) {
         response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
@@ -18,16 +18,5 @@ public class BookingIdResponse {
                 .body("bookingdates.checkin", notNullValue())
                 .body("bookingdates.checkout", notNullValue())
                 .body("additionalneeds", notNullValue());
-    }
-    public void assertWithNoneExistingBookingId(ValidatableResponse response) {
-        response
-                .assertThat()
-                .statusCode(HttpURLConnection.HTTP_NOT_FOUND);
-    }
-
-    public void assertWithNullBookingId(ValidatableResponse response) {
-        response
-                .assertThat()
-                .statusCode(HttpURLConnection.HTTP_NOT_FOUND);
     }
 }
