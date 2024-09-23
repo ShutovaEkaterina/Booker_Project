@@ -11,12 +11,13 @@ public class NewBookingResponse {
         response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
-                .body("firstname", notNullValue())
-                .body("lastname", notNullValue())
-                .body("totalprice", notNullValue())
-                .body("depositpaid", notNullValue())
-                .body("bookingdates.checkin", notNullValue())
-                .body("bookingdates.checkout", notNullValue())
-                .body("additionalneeds", notNullValue());
+                .body("bookingid", notNullValue())
+                .body("booking.firstname", notNullValue())
+                .body("booking.lastname", notNullValue())
+                .body("booking.totalprice", notNullValue())
+                .body("booking.depositpaid", notNullValue())
+                .body("booking.bookingdates.checkin", notNullValue())
+                .body("booking.bookingdates.checkout", notNullValue())
+                .body("booking.additionalneeds", notNullValue());
     }
 }

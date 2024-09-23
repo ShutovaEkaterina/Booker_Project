@@ -4,19 +4,24 @@ public class NewBooking {
     private String firstname;
     private String lastname;
     private String additionalneeds;
-    private String checkin;
-    private String checkout;
+    private BookingDates bookingdates;
     private int totalprice;
     private boolean depositpaid;
 
-    public NewBooking(String firstname, String lastname, String additionalneeds, String checkin, String checkout, int totalprice, boolean depositpaid) {
+    public NewBooking(String firstname, String lastname, int totalprice, boolean depositpaid, BookingDates bookingdates, String additionalneeds) {
         this.firstname = firstname;
         this.lastname = lastname;
-        this.additionalneeds = additionalneeds;
-        this.checkin = checkin;
-        this.checkout = checkout;
         this.totalprice = totalprice;
         this.depositpaid = depositpaid;
+        this.bookingdates = bookingdates;
+        this.additionalneeds = additionalneeds;
+    }
+    public BookingDates getBookingDates() {
+        return bookingdates;
+    }
+
+    public void setBookingDates(BookingDates bookingDates) {
+        this.bookingdates = bookingDates;
     }
 
     public NewBooking() {
@@ -46,21 +51,6 @@ public class NewBooking {
         this.additionalneeds = additionalneeds;
     }
 
-    public String getCheckin() {
-        return checkin;
-    }
-
-    public void setCheckin(String checkin) {
-        this.checkin = checkin;
-    }
-
-    public String getCheckout() {
-        return checkout;
-    }
-
-    public void setCheckout(String checkout) {
-        this.checkout = checkout;
-    }
 
     public int getTotalprice() {
         return totalprice;

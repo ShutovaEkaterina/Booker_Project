@@ -1,5 +1,6 @@
 package allTests;
 
+import createBooking.BookingDates;
 import createBooking.NewBooking;
 import createBooking.NewBookingRequest;
 import createBooking.NewBookingResponse;
@@ -12,7 +13,8 @@ public class NewBookingTest {
 
     @Test
     public void testCreateNewBookingWithAllFields() {
-        NewBooking newBooking = new NewBooking("Amanda", "Smith", "Nothing needed", "2024-12-12", "2024-12-15", 344, true);
+        BookingDates bookingdates = new BookingDates("2024-09-12", "2024-09-15");
+        NewBooking newBooking = new NewBooking("Amanda", "Smith", 344, true, bookingdates, "Nothing needed");
         ValidatableResponse response = newBookingRequest.createBooking(newBooking);
         newBookingResponse.assertSuccessCreatingBookingWithAllFields(response);
     }
