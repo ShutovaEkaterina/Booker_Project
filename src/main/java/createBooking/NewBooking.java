@@ -3,10 +3,10 @@ package createBooking;
 public class NewBooking {
     private String firstname;
     private String lastname;
-    private String additionalneeds;
-    private BookingDates bookingdates;
     private int totalprice;
     private boolean depositpaid;
+    private BookingDates bookingdates;
+    private String additionalneeds;
 
     public NewBooking(String firstname, String lastname, int totalprice, boolean depositpaid, BookingDates bookingdates, String additionalneeds) {
         this.firstname = firstname;
@@ -20,8 +20,8 @@ public class NewBooking {
         return bookingdates;
     }
 
-    public void setBookingDates(BookingDates bookingDates) {
-        this.bookingdates = bookingDates;
+    public void setBookingDates(BookingDates bookingdates) {
+        this.bookingdates = bookingdates;
     }
 
     public NewBooking() {

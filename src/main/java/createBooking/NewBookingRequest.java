@@ -7,6 +7,7 @@ public class NewBookingRequest extends Config {
     public ValidatableResponse createBooking(NewBooking newBooking) {
         return spec()
                 .body(newBooking)
+                .log().body()
                 .when()
                 .post(BOOKING_PATH)
                 .then().log().all();

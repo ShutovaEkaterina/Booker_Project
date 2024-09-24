@@ -15,6 +15,7 @@ public class NewBookingTest {
     public void testCreateNewBookingWithAllFields() {
         BookingDates bookingdates = new BookingDates("2024-09-12", "2024-09-15");
         NewBooking newBooking = new NewBooking("Amanda", "Smith", 344, true, bookingdates, "Nothing needed");
+        System.out.println(newBooking);
         ValidatableResponse response = newBookingRequest.createBooking(newBooking);
         newBookingResponse.assertSuccessCreatingBookingWithAllFields(response);
     }
