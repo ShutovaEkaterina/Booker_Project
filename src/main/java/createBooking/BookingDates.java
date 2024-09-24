@@ -26,4 +26,12 @@ public class BookingDates {
     public void setCheckout(String checkout) {
         this.checkout = checkout;
     }
+    @Override
+    public String toString() {
+        return "BookingDates{" +
+                "checkin='" + checkin + '\'' +
+                ", checkout='" + checkout + '\'' +
+                '}';
+    }
+
 }

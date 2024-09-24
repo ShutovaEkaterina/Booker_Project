@@ -1,10 +1,13 @@
 package createBooking;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class NewBooking {
     private String firstname;
     private String lastname;
     private int totalprice;
     private boolean depositpaid;
+    @JsonProperty("bookingdates")
     private BookingDates bookingdates;
     private String additionalneeds;
 
@@ -16,13 +19,7 @@ public class NewBooking {
         this.bookingdates = bookingdates;
         this.additionalneeds = additionalneeds;
     }
-    public BookingDates getBookingDates() {
-        return bookingdates;
-    }
 
-    public void setBookingDates(BookingDates bookingdates) {
-        this.bookingdates = bookingdates;
-    }
 
     public NewBooking() {
     }
@@ -66,5 +63,16 @@ public class NewBooking {
 
     public void setDepositpaid(boolean depositpaid) {
         this.depositpaid = depositpaid;
+    }
+    @Override
+    public String toString() {
+        return "{" +
+                "firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", totalprice=" + totalprice +
+                ", depositpaid=" + depositpaid +
+                ", bookingdates=" + bookingdates +
+                ", additionalneeds='" + additionalneeds + '\'' +
+                '}';
     }
 }
