@@ -53,4 +53,64 @@ public class NewBookingTest {
         System.out.println(response);
         newBookingResponse.assertSuccessCreatingBookingWithNullAdditionalNeedsField(response);
     }
+
+    // Тест упадет, так как в ответе приходит некорректный формат даты, и статус код 200
+    @Test
+    public void testCreateNewBookingWithEmptyCheckoutDateField() {
+        BookingDates bookingdates = new BookingDates("2024-09-12", "");
+        NewBooking newBooking = new NewBooking("Amanda", "Smith", 344, true, bookingdates, "Something");
+
+        // log newBooking
+        System.out.println(newBooking);
+        ValidatableResponse response = newBookingRequest.createBooking(newBooking);
+
+        // log response
+        System.out.println(response);
+        newBookingResponse.assertSuccessCreatingBookingWithEmptyCheckoutDateField(response);
+    }
+
+    // Тест упадет, так как в ответе приходит некорректный формат даты, и статус код 200
+    @Test
+    public void testCreateNewBookingWithEmptyCheckinDateField() {
+        BookingDates bookingdates = new BookingDates("", "2024-09-12");
+        NewBooking newBooking = new NewBooking("Amanda", "Smith", 344, true, bookingdates, "Something");
+
+        // log newBooking
+        System.out.println(newBooking);
+        ValidatableResponse response = newBookingRequest.createBooking(newBooking);
+
+        // log response
+        System.out.println(response);
+        newBookingResponse.assertSuccessCreatingBookingWithEmptyCheckinDateField(response);
+    }
+
+    // Тест упадет, так как в ответе приходит статус код 200
+    @Test
+    public void testCreateNewBookingWithWrongDatesFields() {
+        BookingDates bookingdates = new BookingDates("2024-09-20", "2024-09-02");
+        NewBooking newBooking = new NewBooking("Amanda", "Smith", 344, true, bookingdates, "Something");
+
+        // log newBooking
+        System.out.println(newBooking);
+        ValidatableResponse response = newBookingRequest.createBooking(newBooking);
+
+        // log response
+        System.out.println(response);
+        newBookingResponse.assertSuccessCreatingBookingWithWrongDatesFields(response);
+    }
+
+    // Тест упадет, так как в ответе приходит статус код 200
+    @Test
+    public void testCreateNewBookingWithDatesInThePast() {
+        BookingDates bookingdates = new BookingDates("2020-03-20", "2020-03-30");
+        NewBooking newBooking = new NewBooking("Amanda", "Smith", 344, true, bookingdates, "Something");
+
+        // log newBooking
+        System.out.println(newBooking);
+        ValidatableResponse response = newBookingRequest.createBooking(newBooking);
+
+        // log response
+        System.out.println(response);
+        newBookingResponse.assertSuccessCreatingBookingWithDatesInThePast(response);
+    }
 }
