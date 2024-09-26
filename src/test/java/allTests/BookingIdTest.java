@@ -12,7 +12,7 @@ public class BookingIdTest {
 
     @Test
     public void testBookingExistedId() {
-        String id = "2";
+        String id = "3";
         ValidatableResponse response = bookingsIdRequest.getBookingsId(id);
         bookingIdResponse.assertWithExistingBookingId(response);
     }

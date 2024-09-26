@@ -1,6 +1,5 @@
 package allTests;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import createBooking.BookingDates;
 import createBooking.NewBooking;
 import createBooking.NewBookingRequest;
@@ -84,6 +83,21 @@ public class NewBookingTest {
         newBookingResponse.assertSuccessCreatingBookingWithEmptyCheckinDateField(response);
     }
 
+    // Тест упадет, так как в ответе приходит некорректный формат даты, и статус код 200
+    @Test
+    public void testCreateNewBookingWithIncorrectFormatDates() {
+        BookingDates bookingdates = new BookingDates("20-09-2024", "23-09-2024");
+        NewBooking newBooking = new NewBooking("Amanda", "Smith", 344, true, bookingdates, "Something");
+
+        // log newBooking
+        System.out.println(newBooking);
+        ValidatableResponse response = newBookingRequest.createBooking(newBooking);
+
+        // log response
+        System.out.println(response);
+        newBookingResponse.assertSuccessCreatingBookingWithIncorrectFormatDates(response);
+    }
+
     // Тест упадет, так как в ответе приходит статус код 200
     @Test
     public void testCreateNewBookingWithWrongDatesFields() {
@@ -112,5 +126,64 @@ public class NewBookingTest {
         // log response
         System.out.println(response);
         newBookingResponse.assertSuccessCreatingBookingWithDatesInThePast(response);
+    }
+
+    @Test
+    public void testCreateNewBookingWithFalseDepositPaid() {
+        BookingDates bookingdates = new BookingDates("2024-10-20", "2024-10-30");
+        NewBooking newBooking = new NewBooking("Amanda", "Smith", 0, false, bookingdates, "Something");
+
+        // log newBooking
+        System.out.println(newBooking);
+        ValidatableResponse response = newBookingRequest.createBooking(newBooking);
+
+        // log response
+        System.out.println(response);
+        newBookingResponse.assertSuccessCreatingBookingWithFalseDepositPaid(response);
+    }
+
+    // Тест упадет, так как в ответе приходит статус код 200
+    @Test
+    public void testCreateNewBookingWithZeroTotalPrice() {
+        BookingDates bookingdates = new BookingDates("2024-10-20", "2024-10-30");
+        NewBooking newBooking = new NewBooking("Amanda", "Smith", 0, false, bookingdates, "Something");
+
+        // log newBooking
+        System.out.println(newBooking);
+        ValidatableResponse response = newBookingRequest.createBooking(newBooking);
+
+        // log response
+        System.out.println(response);
+        newBookingResponse.assertSuccessCreatingBookingWithZeroTotalPrice(response);
+    }
+
+    // Тест упадет, так как в ответе приходит статус код 200
+    @Test
+    public void testCreateNewBookingWithEmptyFirstname() {
+        BookingDates bookingdates = new BookingDates("2024-10-20", "2024-10-30");
+        NewBooking newBooking = new NewBooking("", "Smith", 12, false, bookingdates, "Something");
+
+        // log newBooking
+        System.out.println(newBooking);
+        ValidatableResponse response = newBookingRequest.createBooking(newBooking);
+
+        // log response
+        System.out.println(response);
+        newBookingResponse.assertSuccessCreatingBookingWithEmptyFirstname(response);
+    }
+
+    // Тест упадет, так как в ответе приходит статус код 200
+    @Test
+    public void testCreateNewBookingWithEmptyLastname() {
+        BookingDates bookingdates = new BookingDates("2024-10-20", "2024-10-30");
+        NewBooking newBooking = new NewBooking("Amanda", "", 12, false, bookingdates, "Something");
+
+        // log newBooking
+        System.out.println(newBooking);
+        ValidatableResponse response = newBookingRequest.createBooking(newBooking);
+
+        // log response
+        System.out.println(response);
+        newBookingResponse.assertSuccessCreatingBookingWithEmptyLastname(response);
     }
 }

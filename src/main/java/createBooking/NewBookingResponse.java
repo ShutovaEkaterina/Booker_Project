@@ -79,7 +79,7 @@ public class NewBookingResponse {
                 .body("booking.additionalneeds", notNullValue());
     }
 
-    public void assertSuccessCreatingBookingWithIncorrectFormatDateField(ValidatableResponse response) {
+    public void assertSuccessCreatingBookingWithIncorrectFormatDates(ValidatableResponse response) {
         response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_BAD_REQUEST)
@@ -127,5 +127,73 @@ public class NewBookingResponse {
                 .jsonPath()
                 .getString("reason");
         assertEquals("You can choose dates starting from today", reason);
+    }
+
+    public void assertSuccessCreatingBookingWithFalseDepositPaid(ValidatableResponse response) {
+        response
+                .assertThat()
+                .statusCode(HttpURLConnection.HTTP_OK)
+                .body("bookingid", notNullValue())
+                .body("booking.firstname", notNullValue())
+                .body("booking.lastname", notNullValue())
+                .body("booking.totalprice", greaterThan(0))
+                .body("booking.depositpaid", equalTo(false))
+                .body("booking.bookingdates.checkin", matchesPattern(datePattern))
+                .body("booking.bookingdates.checkout", matchesPattern(datePattern))
+                .body("booking.additionalneeds", notNullValue());
+    }
+
+    public void assertSuccessCreatingBookingWithZeroTotalPrice(ValidatableResponse response) {
+        String reason = response
+                .assertThat()
+                .statusCode(HttpURLConnection.HTTP_BAD_REQUEST)
+                .body("bookingid", notNullValue())
+                .body("booking.firstname", notNullValue())
+                .body("booking.lastname", notNullValue())
+                .body("booking.totalprice", greaterThan(0))
+                .body("booking.depositpaid", equalTo(false))
+                .body("booking.bookingdates.checkin", matchesPattern(datePattern))
+                .body("booking.bookingdates.checkout", matchesPattern(datePattern))
+                .body("booking.additionalneeds", notNullValue())
+                .extract()
+                .jsonPath()
+                .getString("reason");
+        assertEquals("The totalprice has to be greater then 0", reason);
+    }
+
+    public void assertSuccessCreatingBookingWithEmptyFirstname(ValidatableResponse response) {
+        String reason = response
+                .assertThat()
+                .statusCode(HttpURLConnection.HTTP_BAD_REQUEST)
+                .body("bookingid", notNullValue())
+                .body("booking.firstname", notNullValue())
+                .body("booking.lastname", notNullValue())
+                .body("booking.totalprice", greaterThan(0))
+                .body("booking.depositpaid", equalTo(false))
+                .body("booking.bookingdates.checkin", matchesPattern(datePattern))
+                .body("booking.bookingdates.checkout", matchesPattern(datePattern))
+                .body("booking.additionalneeds", notNullValue())
+                .extract()
+                .jsonPath()
+                .getString("reason");
+        assertEquals("The firstname cannot be empty", reason);
+    }
+
+    public void assertSuccessCreatingBookingWithEmptyLastname(ValidatableResponse response) {
+        String reason = response
+                .assertThat()
+                .statusCode(HttpURLConnection.HTTP_BAD_REQUEST)
+                .body("bookingid", notNullValue())
+                .body("booking.firstname", notNullValue())
+                .body("booking.lastname", notNullValue())
+                .body("booking.totalprice", greaterThan(0))
+                .body("booking.depositpaid", equalTo(false))
+                .body("booking.bookingdates.checkin", matchesPattern(datePattern))
+                .body("booking.bookingdates.checkout", matchesPattern(datePattern))
+                .body("booking.additionalneeds", notNullValue())
+                .extract()
+                .jsonPath()
+                .getString("reason");
+        assertEquals("The lastname cannot be empty", reason);
     }
 }
