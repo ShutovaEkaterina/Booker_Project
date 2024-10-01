@@ -6,14 +6,16 @@ import java.net.HttpURLConnection;
 
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class UserResponse {
     // todo проверить неиспозьзуемые параметры и методы
-    public void assertAuthWithCorrectUsernameAndPassword(ValidatableResponse response) {
+    public String assertAuthWithCorrectUsernameAndPassword(ValidatableResponse response) {
         response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
                 .body("token", notNullValue());
+        return response.extract().jsonPath().getString("token");
     }
 
     public void assertAuthWithIncorrectUsername(ValidatableResponse response) {
