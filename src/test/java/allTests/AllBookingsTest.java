@@ -63,6 +63,7 @@ public class AllBookingsTest {
     }
 
    // Тест упадет, так как приходит пустой массив и статус код 200 ОК
+    // переименовать на инглиш
     @Test
     public void testAllBookingsByDateWrongFilter() {
         ValidatableResponse response = allBookingRequest.getAllBookingsByWrongDateFilter("2017-03-13", checkout);

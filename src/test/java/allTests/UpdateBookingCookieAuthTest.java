@@ -3,6 +3,8 @@ package allTests;
 import authPackage.User;
 import authPackage.UserRequest;
 import authPackage.UserResponse;
+import bookingsIdPackage.BookingIdResponse;
+import bookingsIdPackage.BookingsIdRequest;
 import createBooking.BookingDates;
 import createBooking.NewBooking;
 import createBooking.UpdateBookingRequest;
@@ -18,8 +20,12 @@ public class UpdateBookingCookieAuthTest {
     private final UpdateBookingResponse updateBookingResponse = new UpdateBookingResponse();
     private final UserRequest userRequest = new UserRequest();
     private final UserResponse userResponse = new UserResponse();
+    private final BookingsIdRequest bookingsIdRequest = new BookingsIdRequest();
+    private final BookingIdResponse bookingIdResponse = new BookingIdResponse();
 
     private static String token;
+    private NewBooking currentBooking;
+    private String id = "3";
 
     @Before
     public void authUser() {
@@ -30,13 +36,27 @@ public class UpdateBookingCookieAuthTest {
         updateBookingRequest.setToken(token);
     }
 
+    @Before
+    public void getBooking() {
+        ValidatableResponse response = bookingsIdRequest.getBookingsId(id);
+                currentBooking = new NewBooking(
+                response.extract().path("firstname"),
+                response.extract().path("lastname"),
+                response.extract().path("totalprice"),
+                response.extract().path("depositpaid"),
+                new BookingDates(
+                        response.extract().path("bookingdates.checkin"),
+                        response.extract().path("bookingdates.checkout")
+                ),
+                response.extract().path("additionalneeds")
+        );
+    }
+
     @Test
     public void updateFirstnameCookieAuthTest() {
-        String id = "3";
-        BookingDates bookingDates = new BookingDates("2018-10-18", "2024-06-21");
-        NewBooking newBooking = new NewBooking("Karla", "Jones", 576, false, bookingDates,"Breakfast");
-        ValidatableResponse response = updateBookingRequest.updateBookingWithCookie(id, newBooking);
-        updateBookingResponse.assertUpdateBookingFirstnameWithCookieAuth(response);
+        currentBooking.setFirstname("Karla");
+        ValidatableResponse response = updateBookingRequest.updateBookingWithCookie(id, currentBooking);
+        updateBookingResponse.assertUpdateBookingFirstnameWithCookieAuth(response, currentBooking);
     }
 
     @Test

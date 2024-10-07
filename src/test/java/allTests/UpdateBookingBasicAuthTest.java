@@ -11,6 +11,7 @@ public class UpdateBookingBasicAuthTest {
     private final UpdateBookingRequest updateBookingRequest = new UpdateBookingRequest();
     private final UpdateBookingResponse updateBookingResponse = new UpdateBookingResponse();
 
+    // Сначала получать объект для каждого теста
     @Test
     public void updateFirstnameBasicAuthTest() {
         String id = "3";

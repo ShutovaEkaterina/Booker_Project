@@ -4,6 +4,9 @@ import configPackage.Config;
 import io.restassured.response.ValidatableResponse;
 
 public class UpdateBookingRequest extends Config {
+    // что такое basic авторизация
+
+    // написать хелпер или утилиту (в отдельном классе) который создает basic хедер на основе имени пользотваеля и пароля
     private String basicAuthorization = "Basic YWRtaW46cGFzc3dvcmQxMjM=";
     private String token;
 
@@ -40,6 +43,7 @@ public class UpdateBookingRequest extends Config {
                 .then().log().all();
     }
 
+  //Удалить
     public ValidatableResponse updateBookingWithCookieAndBasicAuth(String id, NewBooking newBooking) {
         return spec()
                 .header("Authorization", basicAuthorization)
