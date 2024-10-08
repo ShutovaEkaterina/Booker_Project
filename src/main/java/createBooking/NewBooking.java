@@ -12,6 +12,10 @@ public class NewBooking {
     private BookingDates bookingdates;
     private String additionalneeds;
 
+    public void setBookingdates(BookingDates bookingdates) {
+        this.bookingdates = bookingdates;
+    }
+
     public NewBooking(String firstname, String lastname, int totalprice, boolean depositpaid, BookingDates bookingdates, String additionalneeds) {
         this.firstname = firstname;
         this.lastname = lastname;

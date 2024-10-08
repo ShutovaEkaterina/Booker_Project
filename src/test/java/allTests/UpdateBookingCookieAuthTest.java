@@ -25,7 +25,7 @@ public class UpdateBookingCookieAuthTest {
 
     private static String token;
     private NewBooking currentBooking;
-    private String id = "3";
+    private final String id = "3";
 
     @Before
     public void authUser() {
@@ -61,56 +61,48 @@ public class UpdateBookingCookieAuthTest {
 
     @Test
     public void updateLastnameCookieAuthTest() {
-        String id = "3";
-        BookingDates bookingDates = new BookingDates("2018-10-18", "2024-06-21");
-        NewBooking newBooking = new NewBooking("Mary", "Cooper", 576, false, bookingDates,"Breakfast");
-        ValidatableResponse response = updateBookingRequest.updateBookingWithCookie(id, newBooking);
-        updateBookingResponse.assertUpdateBookingLastnameWithCookieAuth(response);
+        currentBooking.setLastname("Cooper");
+        ValidatableResponse response = updateBookingRequest.updateBookingWithCookie(id, currentBooking);
+        updateBookingResponse.assertUpdateBookingLastnameWithCookieAuth(response, currentBooking);
     }
 
     @Test
     public void updateTotalPriceCookieAuthTest() {
-        String id = "3";
-        BookingDates bookingDates = new BookingDates("2018-10-18", "2024-06-21");
-        NewBooking newBooking = new NewBooking("Mary", "Cooper", 200, false, bookingDates,"Breakfast");
-        ValidatableResponse response = updateBookingRequest.updateBookingWithCookie(id, newBooking);
-        updateBookingResponse.assertUpdateBookingTotalPriceWithCookieAuth(response);
+        currentBooking.setTotalprice(200);
+        ValidatableResponse response = updateBookingRequest.updateBookingWithCookie(id, currentBooking);
+        updateBookingResponse.assertUpdateBookingTotalPriceWithCookieAuth(response, currentBooking);
     }
 
     @Test
     public void updateDepositePaidCookieAuthTest() {
-        String id = "3";
-        BookingDates bookingDates = new BookingDates("2018-10-18", "2024-06-21");
-        NewBooking newBooking = new NewBooking("Mary", "Cooper", 200, true, bookingDates,"Breakfast");
-        ValidatableResponse response = updateBookingRequest.updateBookingWithCookie(id, newBooking);
-        updateBookingResponse.assertUpdateBookingDepositePaidWithCookieAuth(response);
+        currentBooking.setDepositpaid(true);
+        ValidatableResponse response = updateBookingRequest.updateBookingWithCookie(id, currentBooking);
+        updateBookingResponse.assertUpdateBookingDepositePaidWithCookieAuth(response, currentBooking);
     }
 
     @Test
     public void updateCheckinDateCookieAuthTest() {
-        String id = "3";
-        BookingDates bookingDates = new BookingDates("2024-12-12", "2024-12-21");
-        NewBooking newBooking = new NewBooking("Mary", "Cooper", 200, true, bookingDates,"Breakfast");
-        ValidatableResponse response = updateBookingRequest.updateBookingWithCookie(id, newBooking);
-        updateBookingResponse.assertUpdateBookingCheckinDateWithCookieAuth(response);
+        BookingDates currentBookingDates = currentBooking.getBookingdates();
+        currentBookingDates.setCheckin("2024-12-12");
+        currentBooking.setBookingdates(currentBookingDates);
+        ValidatableResponse response = updateBookingRequest.updateBookingWithCookie(id, currentBooking);
+        updateBookingResponse.assertUpdateBookingCheckinDateWithCookieAuth(response, currentBooking);
     }
 
     @Test
     public void updateCheckoutDateCookieAuthTest() {
-        String id = "3";
-        BookingDates bookingDates = new BookingDates("2024-12-12", "2024-12-21");
-        NewBooking newBooking = new NewBooking("Mary", "Cooper", 200, true, bookingDates,"Breakfast");
-        ValidatableResponse response = updateBookingRequest.updateBookingWithCookie(id, newBooking);
-        updateBookingResponse.assertUpdateBookingCheckoutDateWithCookieAuth(response);
+        BookingDates currentBookingsDates = currentBooking.getBookingdates();
+        currentBookingsDates.setCheckout("2024-12-30");
+        currentBooking.setBookingdates(currentBookingsDates);
+        ValidatableResponse response = updateBookingRequest.updateBookingWithCookie(id, currentBooking);
+        updateBookingResponse.assertUpdateBookingCheckoutDateWithCookieAuth(response, currentBooking);
     }
 
     @Test
     public void updateAdditionalNeedsCookieAuthTest() {
-        String id = "3";
-        BookingDates bookingDates = new BookingDates("2024-12-12", "2024-12-21");
-        NewBooking newBooking = new NewBooking("Mary", "Cooper", 200, true, bookingDates,"No sounds");
-        ValidatableResponse response = updateBookingRequest.updateBookingWithCookie(id, newBooking);
-        updateBookingResponse.assertUpdateBookingAdditionalNeedsWithCookieAuth(response);
+        currentBooking.setAdditionalneeds("No sounds");
+        ValidatableResponse response = updateBookingRequest.updateBookingWithCookie(id, currentBooking);
+        updateBookingResponse.assertUpdateBookingAdditionalNeedsWithCookieAuth(response, currentBooking);
     }
 
     // Тест упадет, так как приходит код 405

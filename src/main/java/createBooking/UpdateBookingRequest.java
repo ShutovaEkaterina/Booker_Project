@@ -42,16 +42,4 @@ public class UpdateBookingRequest extends Config {
                 .put(BOOKING_PATH + "/" + id)
                 .then().log().all();
     }
-
-  //Удалить
-    public ValidatableResponse updateBookingWithCookieAndBasicAuth(String id, NewBooking newBooking) {
-        return spec()
-                .header("Authorization", basicAuthorization)
-                .header("Cookie", "token=" + token)
-                .body(newBooking)
-                .log().body()
-                .when()
-                .put(BOOKING_PATH + "/" + id)
-                .then().log().all();
-    }
 }
