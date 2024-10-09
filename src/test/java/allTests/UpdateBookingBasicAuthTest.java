@@ -1,81 +1,90 @@
 package allTests;
 
+import bookingsIdPackage.BookingsIdRequest;
 import createBooking.BookingDates;
 import createBooking.NewBooking;
 import createBooking.UpdateBookingRequest;
 import createBooking.UpdateBookingResponse;
 import io.restassured.response.ValidatableResponse;
+import org.junit.Before;
 import org.junit.Test;
 
 public class UpdateBookingBasicAuthTest {
     private final UpdateBookingRequest updateBookingRequest = new UpdateBookingRequest();
     private final UpdateBookingResponse updateBookingResponse = new UpdateBookingResponse();
+    private final BookingsIdRequest bookingsIdRequest = new BookingsIdRequest();
+    private NewBooking currentBooking;
+    private final String id = "3";
+    @Before
+    public void getBooking() {
+        ValidatableResponse response = bookingsIdRequest.getBookingsId(id);
+        currentBooking = new NewBooking(
+                response.extract().path("firstname"),
+                response.extract().path("lastname"),
+                response.extract().path("totalprice"),
+                response.extract().path("depositpaid"),
+                new BookingDates(
+                        response.extract().path("bookingdates.checkin"),
+                        response.extract().path("bookingdates.checkout")
+                ),
+                response.extract().path("additionalneeds")
+        );
+    }
 
-    // Сначала получать объект для каждого теста
     @Test
     public void updateFirstnameBasicAuthTest() {
-        String id = "3";
-        BookingDates bookingDates = new BookingDates("2018-10-18", "2024-06-21");
-        NewBooking newBooking = new NewBooking("Karla", "Jones", 576, false, bookingDates,"Breakfast");
-        ValidatableResponse response = updateBookingRequest.updateBookingWithBasicAuth(id, newBooking);
-        updateBookingResponse.assertUpdateBookingFirstnameWithBasicAuth(response);
+        currentBooking.setFirstname("Karla");
+        ValidatableResponse response = updateBookingRequest.updateBookingWithBasicAuth(id, currentBooking);
+        updateBookingResponse.assertUpdateBookingFirstnameWithBasicAuth(response, currentBooking);
     }
 
     @Test
     public void updateLastnameBasicAuthTest() {
-        String id = "3";
-        BookingDates bookingDates = new BookingDates("2018-10-18", "2024-06-21");
-        NewBooking newBooking = new NewBooking("Mary", "Cooper", 576, false, bookingDates,"Breakfast");
-        ValidatableResponse response = updateBookingRequest.updateBookingWithBasicAuth(id, newBooking);
-        updateBookingResponse.assertUpdateBookingLastnameWithBasicAuth(response);
+        currentBooking.setLastname("Cooper");
+        ValidatableResponse response = updateBookingRequest.updateBookingWithBasicAuth(id, currentBooking);
+        updateBookingResponse.assertUpdateBookingLastnameWithBasicAuth(response, currentBooking);
     }
 
     @Test
     public void updateTotalPriceBasicAuthTest() {
-        String id = "3";
-        BookingDates bookingDates = new BookingDates("2018-10-18", "2024-06-21");
-        NewBooking newBooking = new NewBooking("Mary", "Cooper", 200, false, bookingDates,"Breakfast");
-        ValidatableResponse response = updateBookingRequest.updateBookingWithBasicAuth(id, newBooking);
-        updateBookingResponse.assertUpdateBookingTotalPriceWithBasicAuth(response);
+        currentBooking.setTotalprice(200);
+        ValidatableResponse response = updateBookingRequest.updateBookingWithBasicAuth(id, currentBooking);
+        updateBookingResponse.assertUpdateBookingTotalPriceWithBasicAuth(response, currentBooking);
     }
 
     @Test
     public void updateDepositePaidBasicAuthTest() {
-        String id = "3";
-        BookingDates bookingDates = new BookingDates("2018-10-18", "2024-06-21");
-        NewBooking newBooking = new NewBooking("Mary", "Cooper", 200, true, bookingDates,"Breakfast");
-        ValidatableResponse response = updateBookingRequest.updateBookingWithBasicAuth(id, newBooking);
-        updateBookingResponse.assertUpdateBookingDepositePaidWithBasicAuth(response);
+        currentBooking.setDepositpaid(true);
+        ValidatableResponse response = updateBookingRequest.updateBookingWithBasicAuth(id, currentBooking);
+        updateBookingResponse.assertUpdateBookingDepositePaidWithBasicAuth(response, currentBooking);
     }
 
     @Test
     public void updateCheckinDateBasicAuthTest() {
-        String id = "3";
-        BookingDates bookingDates = new BookingDates("2024-12-12", "2024-12-21");
-        NewBooking newBooking = new NewBooking("Mary", "Cooper", 200, true, bookingDates,"Breakfast");
-        ValidatableResponse response = updateBookingRequest.updateBookingWithBasicAuth(id, newBooking);
-        updateBookingResponse.assertUpdateBookingCheckinDateWithBasicAuth(response);
+        BookingDates currentBookingDates = currentBooking.getBookingdates();
+        currentBookingDates.setCheckin("2024-12-12");
+        currentBooking.setBookingdates(currentBookingDates);
+        ValidatableResponse response = updateBookingRequest.updateBookingWithBasicAuth(id, currentBooking);
+        updateBookingResponse.assertUpdateBookingCheckinDateWithBasicAuth(response, currentBooking);
     }
 
     @Test
     public void updateCheckoutDateBasicAuthTest() {
-        String id = "3";
-        BookingDates bookingDates = new BookingDates("2024-12-12", "2024-12-21");
-        NewBooking newBooking = new NewBooking("Mary", "Cooper", 200, true, bookingDates,"Breakfast");
-        ValidatableResponse response = updateBookingRequest.updateBookingWithBasicAuth(id, newBooking);
-        updateBookingResponse.assertUpdateBookingCheckoutDateWithBasicAuth(response);
+        BookingDates currentBookingsDates = currentBooking.getBookingdates();
+        currentBookingsDates.setCheckout("2024-12-30");
+        currentBooking.setBookingdates(currentBookingsDates);
+        ValidatableResponse response = updateBookingRequest.updateBookingWithBasicAuth(id, currentBooking);
+        updateBookingResponse.assertUpdateBookingCheckoutDateWithBasicAuth(response, currentBooking);
     }
 
     @Test
     public void updateAdditionalNeedsBasicAuthTest() {
-        String id = "3";
-        BookingDates bookingDates = new BookingDates("2024-12-12", "2024-12-21");
-        NewBooking newBooking = new NewBooking("Mary", "Cooper", 200, true, bookingDates,"No sounds");
-        ValidatableResponse response = updateBookingRequest.updateBookingWithBasicAuth(id, newBooking);
-        updateBookingResponse.assertUpdateBookingAdditionalNeedsWithBasicAuth(response);
+        currentBooking.setAdditionalneeds("No sounds");
+        ValidatableResponse response = updateBookingRequest.updateBookingWithBasicAuth(id, currentBooking);
+        updateBookingResponse.assertUpdateBookingAdditionalNeedsWithBasicAuth(response, currentBooking);
     }
 
-    // Тест упадет, так как приходит код 405
+    // The test failed because it returned a 405 status code
     @Test
     public void updateNotExistingIdBasicAuthTest() {
         String id = "3000000000";

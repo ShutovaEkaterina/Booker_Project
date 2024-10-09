@@ -7,97 +7,96 @@ import java.net.HttpURLConnection;
 import static org.hamcrest.Matchers.*;
 
 public class UpdateBookingResponse {
-    private final String datePattern = "\\d{4}-\\d{2}-\\d{2}";
 
     // Asserts for basic authorization
-    public void assertUpdateBookingFirstnameWithBasicAuth(ValidatableResponse response) {
+    public void assertUpdateBookingFirstnameWithBasicAuth(ValidatableResponse response, NewBooking currentBooking) {
         response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
                 .body("firstname", equalTo("Karla"))
-                .body("lastname", notNullValue())
-                .body("totalprice", greaterThan(0))
-                .body("depositpaid", either(equalTo(true)).or(equalTo(false)))
-                .body("bookingdates.checkin", matchesPattern(datePattern))
-                .body("bookingdates.checkout", matchesPattern(datePattern))
-                .body("additionalneeds", notNullValue());
+                .body("lastname", equalTo(currentBooking.getLastname()))
+                .body("totalprice", equalTo(currentBooking.getTotalprice()))
+                .body("depositpaid", equalTo(currentBooking.isDepositpaid()))
+                .body("bookingdates.checkin", equalTo(currentBooking.getBookingdates().getCheckin()))
+                .body("bookingdates.checkout", equalTo(currentBooking.getBookingdates().getCheckout()))
+                .body("additionalneeds", equalTo(currentBooking.getAdditionalneeds()));
     }
 
-    public void assertUpdateBookingLastnameWithBasicAuth(ValidatableResponse response) {
+    public void assertUpdateBookingLastnameWithBasicAuth(ValidatableResponse response, NewBooking currentBooking) {
         response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
-                .body("firstname", notNullValue())
+                .body("firstname", equalTo(currentBooking.getFirstname()))
                 .body("lastname", equalTo("Cooper"))
-                .body("totalprice", greaterThan(0))
-                .body("depositpaid", either(equalTo(true)).or(equalTo(false)))
-                .body("bookingdates.checkin", matchesPattern(datePattern))
-                .body("bookingdates.checkout", matchesPattern(datePattern))
-                .body("additionalneeds", notNullValue());
+                .body("totalprice", equalTo(currentBooking.getTotalprice()))
+                .body("depositpaid", equalTo(currentBooking.isDepositpaid()))
+                .body("bookingdates.checkin", equalTo(currentBooking.getBookingdates().getCheckin()))
+                .body("bookingdates.checkout", equalTo(currentBooking.getBookingdates().getCheckout()))
+                .body("additionalneeds", equalTo(currentBooking.getAdditionalneeds()));
     }
 
-    public void assertUpdateBookingTotalPriceWithBasicAuth(ValidatableResponse response) {
+    public void assertUpdateBookingTotalPriceWithBasicAuth(ValidatableResponse response, NewBooking currentBooking) {
         response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
-                .body("firstname", notNullValue())
-                .body("lastname", notNullValue())
+                .body("firstname", equalTo(currentBooking.getFirstname()))
+                .body("lastname", equalTo(currentBooking.getLastname()))
                 .body("totalprice", equalTo(200))
-                .body("depositpaid", either(equalTo(true)).or(equalTo(false)))
-                .body("bookingdates.checkin", matchesPattern(datePattern))
-                .body("bookingdates.checkout", matchesPattern(datePattern))
-                .body("additionalneeds", notNullValue());
+                .body("depositpaid", equalTo(currentBooking.isDepositpaid()))
+                .body("bookingdates.checkin", equalTo(currentBooking.getBookingdates().getCheckin()))
+                .body("bookingdates.checkout", equalTo(currentBooking.getBookingdates().getCheckout()))
+                .body("additionalneeds", equalTo(currentBooking.getAdditionalneeds()));
     }
 
-    public void assertUpdateBookingDepositePaidWithBasicAuth(ValidatableResponse response) {
+    public void assertUpdateBookingDepositePaidWithBasicAuth(ValidatableResponse response, NewBooking currentBooking) {
         response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
-                .body("firstname", notNullValue())
-                .body("lastname", notNullValue())
-                .body("totalprice", greaterThan(0))
+                .body("firstname", equalTo(currentBooking.getFirstname()))
+                .body("lastname", equalTo(currentBooking.getLastname()))
+                .body("totalprice", equalTo(currentBooking.getTotalprice()))
                 .body("depositpaid", equalTo(true))
-                .body("bookingdates.checkin", matchesPattern(datePattern))
-                .body("bookingdates.checkout", matchesPattern(datePattern))
-                .body("additionalneeds", notNullValue());
+                .body("bookingdates.checkin", equalTo(currentBooking.getBookingdates().getCheckin()))
+                .body("bookingdates.checkout", equalTo(currentBooking.getBookingdates().getCheckout()))
+                .body("additionalneeds", equalTo(currentBooking.getAdditionalneeds()));
     }
 
-    public void assertUpdateBookingCheckinDateWithBasicAuth(ValidatableResponse response) {
+    public void assertUpdateBookingCheckinDateWithBasicAuth(ValidatableResponse response, NewBooking currentBooking) {
         response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
-                .body("firstname", notNullValue())
-                .body("lastname", notNullValue())
-                .body("totalprice", greaterThan(0))
-                .body("depositpaid", either(equalTo(true)).or(equalTo(false)))
+                .body("firstname", equalTo(currentBooking.getFirstname()))
+                .body("lastname", equalTo(currentBooking.getLastname()))
+                .body("totalprice", equalTo(currentBooking.getTotalprice()))
+                .body("depositpaid", equalTo(currentBooking.isDepositpaid()))
                 .body("bookingdates.checkin", equalTo("2024-12-12"))
-                .body("bookingdates.checkout", matchesPattern(datePattern))
-                .body("additionalneeds", notNullValue());
+                .body("bookingdates.checkout", equalTo(currentBooking.getBookingdates().getCheckout()))
+                .body("additionalneeds", equalTo(currentBooking.getAdditionalneeds()));
     }
 
-    public void assertUpdateBookingCheckoutDateWithBasicAuth(ValidatableResponse response) {
+    public void assertUpdateBookingCheckoutDateWithBasicAuth(ValidatableResponse response, NewBooking currentBooking) {
         response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
-                .body("firstname", notNullValue())
-                .body("lastname", notNullValue())
-                .body("totalprice", greaterThan(0))
-                .body("depositpaid", either(equalTo(true)).or(equalTo(false)))
-                .body("bookingdates.checkin", matchesPattern(datePattern))
-                .body("bookingdates.checkout", equalTo("2024-12-21"))
-                .body("additionalneeds", notNullValue());
+                .body("firstname", equalTo(currentBooking.getFirstname()))
+                .body("lastname", equalTo(currentBooking.getLastname()))
+                .body("totalprice", equalTo(currentBooking.getTotalprice()))
+                .body("depositpaid", equalTo(currentBooking.isDepositpaid()))
+                .body("bookingdates.checkin", equalTo(currentBooking.getBookingdates().getCheckin()))
+                .body("bookingdates.checkout", equalTo("2024-12-30"))
+                .body("additionalneeds", equalTo(currentBooking.getAdditionalneeds()));
     }
 
-    public void assertUpdateBookingAdditionalNeedsWithBasicAuth(ValidatableResponse response) {
+    public void assertUpdateBookingAdditionalNeedsWithBasicAuth(ValidatableResponse response, NewBooking currentBooking) {
         response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
-                .body("firstname", notNullValue())
-                .body("lastname", notNullValue())
-                .body("totalprice", greaterThan(0))
-                .body("depositpaid", either(equalTo(true)).or(equalTo(false)))
-                .body("bookingdates.checkin", matchesPattern(datePattern))
-                .body("bookingdates.checkout", matchesPattern(datePattern))
+                .body("firstname", equalTo(currentBooking.getFirstname()))
+                .body("lastname", equalTo(currentBooking.getLastname()))
+                .body("totalprice", equalTo(currentBooking.getTotalprice()))
+                .body("depositpaid", equalTo(currentBooking.isDepositpaid()))
+                .body("bookingdates.checkin", equalTo(currentBooking.getBookingdates().getCheckin()))
+                .body("bookingdates.checkout", equalTo(currentBooking.getBookingdates().getCheckout()))
                 .body("additionalneeds", equalTo("No sounds"));
     }
 

@@ -21,7 +21,6 @@ public class UpdateBookingCookieAuthTest {
     private final UserRequest userRequest = new UserRequest();
     private final UserResponse userResponse = new UserResponse();
     private final BookingsIdRequest bookingsIdRequest = new BookingsIdRequest();
-    private final BookingIdResponse bookingIdResponse = new BookingIdResponse();
 
     private static String token;
     private NewBooking currentBooking;
@@ -105,7 +104,7 @@ public class UpdateBookingCookieAuthTest {
         updateBookingResponse.assertUpdateBookingAdditionalNeedsWithCookieAuth(response, currentBooking);
     }
 
-    // Тест упадет, так как приходит код 405
+    // The test failed because it returned a 405 status code
     @Test
     public void updateNotExistingIdCookieAuthTest() {
         String id = "3000000000";

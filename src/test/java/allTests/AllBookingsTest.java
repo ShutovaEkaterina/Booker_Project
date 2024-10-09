@@ -62,8 +62,7 @@ public class AllBookingsTest {
         allBookingsResponse.assertAllBookingsByDates(response);
     }
 
-   // Тест упадет, так как приходит пустой массив и статус код 200 ОК
-    // переименовать на инглиш
+    //  The test failed because an empty array is returned along with a 200 OK status code.
     @Test
     public void testAllBookingsByDateWrongFilter() {
         ValidatableResponse response = allBookingRequest.getAllBookingsByWrongDateFilter("2017-03-13", checkout);

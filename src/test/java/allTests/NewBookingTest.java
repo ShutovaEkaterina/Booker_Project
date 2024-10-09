@@ -53,7 +53,7 @@ public class NewBookingTest {
         newBookingResponse.assertSuccessCreatingBookingWithNullAdditionalNeedsField(response);
     }
 
-    // Тест упадет, так как в ответе приходит некорректный формат даты, и статус код 200
+    // The test failed because the response contained an incorrect date format, and the status code was 200.
     @Test
     public void testCreateNewBookingWithEmptyCheckoutDateField() {
         BookingDates bookingdates = new BookingDates("2024-09-12", "");
@@ -68,7 +68,7 @@ public class NewBookingTest {
         newBookingResponse.assertSuccessCreatingBookingWithEmptyCheckoutDateField(response);
     }
 
-    // Тест упадет, так как в ответе приходит некорректный формат даты, и статус код 200
+    // The test failed because the response contained an incorrect date format, and the status code was 200.
     @Test
     public void testCreateNewBookingWithEmptyCheckinDateField() {
         BookingDates bookingdates = new BookingDates("", "2024-09-12");
@@ -83,7 +83,7 @@ public class NewBookingTest {
         newBookingResponse.assertSuccessCreatingBookingWithEmptyCheckinDateField(response);
     }
 
-    // Тест упадет, так как в ответе приходит некорректный формат даты, и статус код 200
+    // The test failed because the response contained an incorrect date format, and the status code was 200.
     @Test
     public void testCreateNewBookingWithIncorrectFormatDates() {
         BookingDates bookingdates = new BookingDates("20-09-2024", "23-09-2024");
@@ -98,7 +98,7 @@ public class NewBookingTest {
         newBookingResponse.assertSuccessCreatingBookingWithIncorrectFormatDates(response);
     }
 
-    // Тест упадет, так как в ответе приходит статус код 200
+    // The test failed because it returned a 200 status code
     @Test
     public void testCreateNewBookingWithWrongDatesFields() {
         BookingDates bookingdates = new BookingDates("2024-09-20", "2024-09-02");
@@ -113,7 +113,7 @@ public class NewBookingTest {
         newBookingResponse.assertSuccessCreatingBookingWithWrongDatesFields(response);
     }
 
-    // Тест упадет, так как в ответе приходит статус код 200
+    // The test failed because it returned a 200 status code
     @Test
     public void testCreateNewBookingWithDatesInThePast() {
         BookingDates bookingdates = new BookingDates("2020-03-20", "2020-03-30");
@@ -142,7 +142,7 @@ public class NewBookingTest {
         newBookingResponse.assertSuccessCreatingBookingWithFalseDepositPaid(response);
     }
 
-    // Тест упадет, так как в ответе приходит статус код 200
+    // The test failed because it returned a 200 status code
     @Test
     public void testCreateNewBookingWithZeroTotalPrice() {
         BookingDates bookingdates = new BookingDates("2024-10-20", "2024-10-30");
@@ -157,7 +157,7 @@ public class NewBookingTest {
         newBookingResponse.assertSuccessCreatingBookingWithZeroTotalPrice(response);
     }
 
-    // Тест упадет, так как в ответе приходит статус код 200
+    // The test failed because it returned a 200 status code
     @Test
     public void testCreateNewBookingWithEmptyFirstname() {
         BookingDates bookingdates = new BookingDates("2024-10-20", "2024-10-30");
@@ -172,7 +172,7 @@ public class NewBookingTest {
         newBookingResponse.assertSuccessCreatingBookingWithEmptyFirstname(response);
     }
 
-    // Тест упадет, так как в ответе приходит статус код 200
+    // The test failed because it returned a 200 status code
     @Test
     public void testCreateNewBookingWithEmptyLastname() {
         BookingDates bookingdates = new BookingDates("2024-10-20", "2024-10-30");

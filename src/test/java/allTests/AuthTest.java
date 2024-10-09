@@ -20,7 +20,7 @@ public class AuthTest {
         userResponse.assertAuthWithCorrectUsernameAndPassword(response);
     }
 
-    // Тест упадет, так как статус код = 200 ОК
+    // The test failed because it returned a 200 status code
    @Test
    public void testAuthUserWithIncorrectUsername() {
         User user = new User("pasha", password);
@@ -28,7 +28,7 @@ public class AuthTest {
         userResponse.assertAuthWithIncorrectUsername(response);
     }
 
-    // Тест упадет, так как статус код = 200 ОК
+    // The test failed because it returned a 200 status code
     @Test
     public void testAuthUserWithIncorrectPassword() {
         User user = new User(username, "1234");
@@ -36,7 +36,7 @@ public class AuthTest {
         userResponse.assertAuthWithIncorrectPassword(response);
     }
 
-    // Тест упадет, так как статус код = 200 ОК
+    // The test failed because it returned a 200 status code
     @Test
     public void testAuthUserWithIncorrectUsernameAndPassword() {
         User user = new User("tamara", "123456");
@@ -44,7 +44,7 @@ public class AuthTest {
         userResponse.assertAuthWithIncorrectUsernameAndPassword(response);
     }
 
-    // Тест упадет, так как статус код = 200 ОК
+    // The test failed because it returned a 200 status code
     @Test
     public void testAuthUserWithoutUsername() {
         User user = new User("", "password123");
@@ -52,7 +52,7 @@ public class AuthTest {
         userResponse.assertAuthWithoutUsername(response);
     }
 
-    // Тест упадет, так как статус код = 200 ОК
+    // The test failed because it returned a 200 status code
     @Test
     public void testAuthUserWithoutPassword() {
         User user = new User("admin", "");
@@ -60,7 +60,7 @@ public class AuthTest {
         userResponse.assertAuthWithoutPassword(response);
     }
 
-    // Тест упадет, так как статус код = 200 ОК
+    // The test failed because it returned a 200 status code
     @Test
     public void testAuthUserWithoutUsernameAndPassword() {
         // todo переделать на нужный конструктор

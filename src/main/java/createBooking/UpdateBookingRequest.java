@@ -7,7 +7,7 @@ public class UpdateBookingRequest extends Config {
     // что такое basic авторизация
 
     // написать хелпер или утилиту (в отдельном классе) который создает basic хедер на основе имени пользотваеля и пароля
-    private String basicAuthorization = "Basic YWRtaW46cGFzc3dvcmQxMjM=";
+    private String basicAuthorization = AuthUtil.createBasicAuthorization("admin", "password123");
     private String token;
 
     public void setToken(String token) {
