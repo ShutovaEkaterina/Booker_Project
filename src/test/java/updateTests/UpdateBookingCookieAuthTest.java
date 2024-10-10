@@ -1,4 +1,4 @@
-package allTests;
+package updateTests;
 
 import authPackage.User;
 import authPackage.UserRequest;

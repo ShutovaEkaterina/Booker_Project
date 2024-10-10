@@ -1,4 +1,4 @@
-package allTests;
+package updateTests;
 
 import bookingsIdPackage.BookingsIdRequest;
 import createBooking.BookingDates;
