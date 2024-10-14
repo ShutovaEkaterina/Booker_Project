@@ -36,7 +36,40 @@ public class PartialUpdateBasicAuthTest {
     public void partialUpdateFirstnameBasicAuthTest() {
         String newFirstname = "Karla";
         currentBooking.setFirstname(newFirstname);
-        ValidatableResponse response = partialUpdateRequest.partialUpdateBookingWithBasicAuth(id, newFirstname);
+        ValidatableResponse response = partialUpdateRequest.partialUpdateBookingFirstnameWithBasicAuth(id, newFirstname);
         partialUpdateResponse.assertPartialUpdateBookingFirstnameWithBasicAuth(response, currentBooking);
+    }
+
+    @Test
+    public void partialUpdateLastnameBasicAuthTest() {
+        String newLastname = "Cooper";
+        currentBooking.setLastname(newLastname);
+        ValidatableResponse response = partialUpdateRequest.partialUpdateBookingLastnameWithBasicAuth(id, newLastname);
+        partialUpdateResponse.assertPartialUpdateBookingLastnameWithBasicAuth(response, currentBooking);
+    }
+
+    @Test
+    public void partialUpdateTotalPriceBasicAuthTest() {
+        int newTotalPrice = 200;
+        currentBooking.setTotalprice(newTotalPrice);
+        ValidatableResponse response = partialUpdateRequest.partialUpdateBookingTotalPriceWithBasicAuth(id, newTotalPrice);
+        partialUpdateResponse.assertPartialUpdateBookingTotalPriceWithBasicAuth(response, currentBooking);
+    }
+
+    @Test
+    public void partialUpdateDepositPaidBasicAuthTest() {
+        boolean newDepositPaid = true;
+        currentBooking.setDepositpaid(newDepositPaid);
+        ValidatableResponse response = partialUpdateRequest.partialUpdateBookingDepositPaidWithBasicAuth(id, newDepositPaid);
+        partialUpdateResponse.assertPartialUpdateBookingDepositPaidWithBasicAuth(response, currentBooking);
+    }
+
+    @Test
+    public void partialUpdateCheckinDateBasicAuthTest() {
+        BookingDates currentBookingsDates = currentBooking.getBookingdates();
+        String newCheckinDate = "2024-12-12";
+        currentBookingsDates.setCheckin(newCheckinDate);
+        ValidatableResponse response = partialUpdateRequest.partialUpdateBookingCheckinDateWithBasicAuth(id, newCheckinDate);
+        partialUpdateResponse.assertPartialUpdateBookingCheckinDateWithBasicAuth(response, currentBooking);
     }
 }

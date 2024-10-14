@@ -11,8 +11,52 @@ public class PartialUpdateRequest extends Config {
         this.token = token;
     }
 
-    public ValidatableResponse partialUpdateBookingWithBasicAuth(String id, String firstname) {
+    public ValidatableResponse partialUpdateBookingFirstnameWithBasicAuth(String id, String firstname) {
         String requestBody = "{ \"firstname\": \"" + firstname + "\" }";
+        return spec()
+                .header("Authorization", basicAuthorization)
+                .body(requestBody)
+                .log().body()
+                .when()
+                .patch(BOOKING_PATH + "/" + id)
+                .then().log().all();
+    }
+
+    public ValidatableResponse partialUpdateBookingLastnameWithBasicAuth(String id, String lastname) {
+        String requestBody = "{ \"lastname\": \"" + lastname + "\" }";
+        return spec()
+                .header("Authorization", basicAuthorization)
+                .body(requestBody)
+                .log().body()
+                .when()
+                .patch(BOOKING_PATH + "/" + id)
+                .then().log().all();
+    }
+
+    public ValidatableResponse partialUpdateBookingTotalPriceWithBasicAuth(String id, int totalPrice) {
+        String requestBody = "{ \"totalprice\": \"" + totalPrice + "\" }";
+        return spec()
+                .header("Authorization", basicAuthorization)
+                .body(requestBody)
+                .log().body()
+                .when()
+                .patch(BOOKING_PATH + "/" + id)
+                .then().log().all();
+    }
+
+    public ValidatableResponse partialUpdateBookingDepositPaidWithBasicAuth(String id, boolean depositPaid) {
+        String requestBody = "{ \"depositpaid\": \"" + depositPaid + "\" }";
+        return spec()
+                .header("Authorization", basicAuthorization)
+                .body(requestBody)
+                .log().body()
+                .when()
+                .patch(BOOKING_PATH + "/" + id)
+                .then().log().all();
+    }
+
+    public ValidatableResponse partialUpdateBookingCheckinDateWithBasicAuth(String id, String checkinDate) {
+        String requestBody = "{ \"bookingdates\": { \"checkin\": \"" + checkinDate + "\" } }";
         return spec()
                 .header("Authorization", basicAuthorization)
                 .body(requestBody)
