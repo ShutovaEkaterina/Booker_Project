@@ -112,10 +112,88 @@ public class PartialUpdateRequest extends Config {
     }
 
     // Updating with cookie
-    public ValidatableResponse partialUpdateBookingWithCookie(String id, NewBooking newBooking) {
+    public ValidatableResponse partialUpdateBookingFirstnameWithCookie(String id, String firstname) {
+        String requestBody = "{ \"firstname\": \"" + firstname + "\" }";
         return spec()
                 .header("Cookie", "token=" + token)
-                .body(newBooking)
+                .body(requestBody)
+                .log().body()
+                .when()
+                .patch(BOOKING_PATH + "/" + id)
+                .then().log().all();
+    }
+
+    public ValidatableResponse partialUpdateBookingLastnameWithCookie(String id, String lastname) {
+        String requestBody = "{ \"lastname\": \"" + lastname + "\" }";
+        return spec()
+                .header("Cookie", "token=" + token)
+                .body(requestBody)
+                .log().body()
+                .when()
+                .patch(BOOKING_PATH + "/" + id)
+                .then().log().all();
+    }
+
+    public ValidatableResponse partialUpdateBookingTotalPriceWithCookieAuth(String id, int totalPrice) {
+        String requestBody = "{ \"totalprice\": \"" + totalPrice + "\" }";
+        return spec()
+                .header("Cookie", "token=" + token)
+                .body(requestBody)
+                .log().body()
+                .when()
+                .patch(BOOKING_PATH + "/" + id)
+                .then().log().all();
+    }
+
+    public ValidatableResponse partialUpdateBookingDepositPaidWithCookieAuth(String id, boolean depositPaid) {
+        String requestBody = "{ \"depositpaid\": \"" + depositPaid + "\" }";
+        return spec()
+                .header("Cookie", "token=" + token)
+                .body(requestBody)
+                .log().body()
+                .when()
+                .patch(BOOKING_PATH + "/" + id)
+                .then().log().all();
+    }
+
+    public ValidatableResponse partialUpdateBookingCheckinDateWithCookieAuth(String id, String checkinDate) {
+        String requestBody = "{ \"bookingdates\": { \"checkin\": \"" + checkinDate + "\" } }";
+        return spec()
+                .header("Cookie", "token=" + token)
+                .body(requestBody)
+                .log().body()
+                .when()
+                .patch(BOOKING_PATH + "/" + id)
+                .then().log().all();
+    }
+
+    public ValidatableResponse partialUpdateBookingCheckoutDateWithCookieAuth(String id, String checkoutDate) {
+        String requestBody = "{ \"bookingdates\": { \"checkout\": \"" + checkoutDate + "\" } }";
+        return spec()
+                .header("Cookie", "token=" + token)
+                .body(requestBody)
+                .log().body()
+                .when()
+                .patch(BOOKING_PATH + "/" + id)
+                .then().log().all();
+    }
+
+    public ValidatableResponse partialUpdateBookingAdditionalNeedsWithCookieAuth(String id, String additionalNeeds) {
+        String requestBody = "{ \"additionalneeds\": \"" + additionalNeeds + "\" }";
+        return spec()
+                .header("Cookie", "token=" + token)
+                .body(requestBody)
+                .log().body()
+                .when()
+                .patch(BOOKING_PATH + "/" + id)
+                .then().log().all();
+    }
+
+    public ValidatableResponse partialUpdateBookingAdditionalNeedsAndIncorrectIdWithCookieAuth(String id, String additionalNeeds) {
+        String requestBody = "{ \"additionalneeds\": \"" + additionalNeeds + "\" }";
+        return spec()
+                .header("Cookie", "token=" + token)
+                .body(requestBody)
                 .log().body()
                 .when()
                 .patch(BOOKING_PATH + "/" + id)
