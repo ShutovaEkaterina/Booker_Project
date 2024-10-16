@@ -72,4 +72,31 @@ public class PartialUpdateBasicAuthTest {
         ValidatableResponse response = partialUpdateRequest.partialUpdateBookingCheckinDateWithBasicAuth(id, newCheckinDate);
         partialUpdateResponse.assertPartialUpdateBookingCheckinDateWithBasicAuth(response, currentBooking);
     }
+
+    @Test
+    public void partialUpdateCheckoutDateBasicAuthTest() {
+        BookingDates currentBookingsDates = currentBooking.getBookingdates();
+        String newCheckoutDate = "2024-12-30";
+        currentBookingsDates.setCheckout(newCheckoutDate);
+        ValidatableResponse response = partialUpdateRequest.partialUpdateBookingCheckoutDateWithBasicAuth(id, newCheckoutDate);
+        partialUpdateResponse.assertPartialUpdateBookingCheckoutDateWithBasicAuth(response, currentBooking);
+    }
+
+    @Test
+    public void partialUpdateAdditionalNeedsBasicAuthTest() {
+        String newAdditionalNeeds = "No sounds";
+        currentBooking.setAdditionalneeds(newAdditionalNeeds);
+        ValidatableResponse response = partialUpdateRequest.partialUpdateBookingAdditionalNeedsWithBasicAuth(id, newAdditionalNeeds);
+        partialUpdateResponse.assertPartialUpdateBookingAdditionalNeedsWithBasicAuth(response, currentBooking);
+    }
+
+    // The test failed because it returned a 405 status code
+    @Test
+    public void partialUpdateNotExistingIdBasicAuthTest() {
+        String id = "30000000";
+        String newAdditionalNeeds = "No sounds";
+        currentBooking.setAdditionalneeds(newAdditionalNeeds);
+        ValidatableResponse response = partialUpdateRequest.partialUpdateBookingAdditionalNeedsAndIncorrectIdWithBasicAuth(id, newAdditionalNeeds);
+        partialUpdateResponse.assertPartialUpdateBookingWithNotExistingIdWithBasicAuth(response, currentBooking);
+    }
 }

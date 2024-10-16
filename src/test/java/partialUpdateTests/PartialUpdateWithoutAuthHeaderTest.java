@@ -1,17 +1,14 @@
-package updateTests;
+package partialUpdateTests;
 
 import bookingsIdPackage.BookingsIdRequest;
-import createBooking.BookingDates;
-import createBooking.NewBooking;
-import createBooking.UpdateBookingRequest;
-import createBooking.UpdateBookingResponse;
+import createBooking.*;
 import io.restassured.response.ValidatableResponse;
 import org.junit.Before;
 import org.junit.Test;
 
-public class UpdateBookingWithoutAuthHeaderTest {
-    private final UpdateBookingRequest updateBookingRequest = new UpdateBookingRequest();
-    private final UpdateBookingResponse updateBookingResponse = new UpdateBookingResponse();
+public class PartialUpdateWithoutAuthHeaderTest {
+    private final PartialUpdateRequest partialUpdateRequest = new PartialUpdateRequest();
+    private final PartialUpdateResponse partialUpdateResponse = new PartialUpdateResponse();
     private final BookingsIdRequest bookingsIdRequest = new BookingsIdRequest();
     private NewBooking currentBooking;
     private final String id = "3";
@@ -33,9 +30,10 @@ public class UpdateBookingWithoutAuthHeaderTest {
     }
 
     @Test
-    public void updateBookingWithoutBasicAuthAndCookieTest() {
-        ValidatableResponse response = updateBookingRequest.updateBookingWithoutBasicAuthAndCookie(id, currentBooking);
-        updateBookingResponse.assertUpdateBookingWithoutBasicAuthAndCookie(response, currentBooking);
+    public void partialUpdateBookingWithoutBasicAuthAndCookieTest() {
+        boolean newDepositPaid = true;
+        currentBooking.setDepositpaid(newDepositPaid);
+        ValidatableResponse response = partialUpdateRequest.partialUpdateBookingWithoutBasicAuthAndCookie(id, newDepositPaid);
+        partialUpdateResponse.assertPartialUpdateBookingWithoutBasicAuthAndCookie(response, currentBooking);
     }
-
 }

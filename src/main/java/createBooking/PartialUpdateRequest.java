@@ -11,6 +11,7 @@ public class PartialUpdateRequest extends Config {
         this.token = token;
     }
 
+    // Updating with basic authorization
     public ValidatableResponse partialUpdateBookingFirstnameWithBasicAuth(String id, String firstname) {
         String requestBody = "{ \"firstname\": \"" + firstname + "\" }";
         return spec()
@@ -66,15 +67,51 @@ public class PartialUpdateRequest extends Config {
                 .then().log().all();
     }
 
-    public ValidatableResponse partialUpdateBookingWithoutBasicAuthAndCookie(String id, NewBooking newBooking) {
+    public ValidatableResponse partialUpdateBookingCheckoutDateWithBasicAuth(String id, String checkoutDate) {
+        String requestBody = "{ \"bookingdates\": { \"checkout\": \"" + checkoutDate + "\" } }";
         return spec()
-                .body(newBooking)
+                .header("Authorization", basicAuthorization)
+                .body(requestBody)
                 .log().body()
                 .when()
                 .patch(BOOKING_PATH + "/" + id)
                 .then().log().all();
     }
 
+    public ValidatableResponse partialUpdateBookingAdditionalNeedsWithBasicAuth(String id, String additionalNeeds) {
+        String requestBody = "{ \"additionalneeds\": \"" + additionalNeeds + "\" }";
+        return spec()
+                .header("Authorization", basicAuthorization)
+                .body(requestBody)
+                .log().body()
+                .when()
+                .patch(BOOKING_PATH + "/" + id)
+                .then().log().all();
+    }
+
+    public ValidatableResponse partialUpdateBookingAdditionalNeedsAndIncorrectIdWithBasicAuth(String id, String additionalNeeds) {
+        String requestBody = "{ \"additionalneeds\": \"" + additionalNeeds + "\" }";
+        return spec()
+                .header("Authorization", basicAuthorization)
+                .body(requestBody)
+                .log().body()
+                .when()
+                .patch(BOOKING_PATH + "/" + id)
+                .then().log().all();
+    }
+
+    // Updating without basic authorization and without cookie
+    public ValidatableResponse partialUpdateBookingWithoutBasicAuthAndCookie(String id, boolean depositPaid) {
+        String requestBody = "{ \"depositpaid\": \"" + depositPaid + "\" }";
+        return spec()
+                .body(requestBody)
+                .log().body()
+                .when()
+                .patch(BOOKING_PATH + "/" + id)
+                .then().log().all();
+    }
+
+    // Updating with cookie
     public ValidatableResponse partialUpdateBookingWithCookie(String id, NewBooking newBooking) {
         return spec()
                 .header("Cookie", "token=" + token)

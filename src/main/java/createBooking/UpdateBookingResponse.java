@@ -107,7 +107,7 @@ public class UpdateBookingResponse {
     }
 
     // Asserts without auth headers
-    public void assertUpdateBookingWithoutBasicAuthAndCookieWithBasicAuth(ValidatableResponse response, NewBooking currentBooking) {
+    public void assertUpdateBookingWithoutBasicAuthAndCookie(ValidatableResponse response, NewBooking currentBooking) {
         response
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_FORBIDDEN);
