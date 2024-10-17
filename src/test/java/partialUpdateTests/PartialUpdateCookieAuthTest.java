@@ -14,7 +14,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;
 
-public class PartialUpdateCookieAuth {
+public class PartialUpdateCookieAuthTest {
     private final PartialUpdateRequest partialUpdateRequest = new PartialUpdateRequest();
     private final PartialUpdateResponse partialUpdateResponse = new PartialUpdateResponse();
     private final UserRequest userRequest = new UserRequest();
