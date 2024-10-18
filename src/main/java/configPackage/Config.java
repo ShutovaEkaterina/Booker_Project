@@ -13,4 +13,10 @@ public class Config {
                 .contentType(ContentType.JSON)
                 .baseUri(BASE_URL);
     }
+
+    public RequestSpecification specXML() {
+        return given()
+                .contentType(ContentType.XML)
+                .baseUri(BASE_URL);
+    }
 }

@@ -12,4 +12,13 @@ public class NewBookingRequest extends Config {
                 .post(BOOKING_PATH)
                 .then().log().all();
     }
+
+    public ValidatableResponse createBookingXML(String xmlBody) {
+        return specXML()
+                .body(xmlBody)
+                .log().body()
+                .when()
+                .post(BOOKING_PATH)
+                .then().log().all();
+    }
 }

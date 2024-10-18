@@ -42,4 +42,33 @@ public class UpdateBookingRequest extends Config {
                 .put(BOOKING_PATH + "/" + id)
                 .then().log().all();
     }
+
+    public ValidatableResponse updateBookingWithBasicAuthXML(String id, String xmlBody) {
+        return specXML()
+                .header("Authorization", basicAuthorization)
+                .body(xmlBody)
+                .log().body()
+                .when()
+                .put(BOOKING_PATH + "/" + id)
+                .then().log().all();
+    }
+
+    public ValidatableResponse updateBookingWithCookieXML(String id, String xmlBody) {
+        return specXML()
+                .header("Cookie", "token=" + token)
+                .body(xmlBody)
+                .log().body()
+                .when()
+                .put(BOOKING_PATH + "/" + id)
+                .then().log().all();
+    }
+
+    public ValidatableResponse updateBookingWithoutBasicAuthAndCookieXML(String id, String xmlBody) {
+        return specXML()
+                .body(xmlBody)
+                .log().body()
+                .when()
+                .put(BOOKING_PATH + "/" + id)
+                .then().log().all();
+    }
 }

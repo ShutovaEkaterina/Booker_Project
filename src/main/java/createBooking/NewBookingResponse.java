@@ -196,4 +196,18 @@ public class NewBookingResponse {
                 .getString("reason");
         assertEquals("The lastname cannot be empty", reason);
     }
+
+    public void assertSuccessCreatingBookingWithAllFieldsXML(ValidatableResponse response) {
+        response
+                .assertThat()
+                .statusCode(HttpURLConnection.HTTP_OK)
+                .body("bookingid", notNullValue())
+                .body("booking.firstname", notNullValue())
+                .body("booking.lastname", notNullValue())
+                .body("booking.totalprice", greaterThan(0))
+                .body("booking.depositpaid", equalTo(true))
+                .body("booking.bookingdates.checkin", matchesPattern(datePattern))
+                .body("booking.bookingdates.checkout", matchesPattern(datePattern))
+                .body("booking.additionalneeds", notNullValue());
+    }
 }

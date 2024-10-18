@@ -211,4 +211,37 @@ public class UpdateBookingResponse {
                 .statusCode(HttpURLConnection.HTTP_NOT_FOUND);
     }
 
+    // Asserts for XML tests
+    public void assertUpdateBookingFirstnameWithBasicAuthXML(ValidatableResponse response, NewBooking currentBooking) {
+        response
+                .assertThat()
+                .statusCode(HttpURLConnection.HTTP_OK)
+                .body("firstname", equalTo("Karla"))
+                .body("lastname", equalTo(currentBooking.getLastname()))
+                .body("totalprice", equalTo(currentBooking.getTotalprice()))
+                .body("depositpaid", equalTo(currentBooking.isDepositpaid()))
+                .body("bookingdates.checkin", equalTo(currentBooking.getBookingdates().getCheckin()))
+                .body("bookingdates.checkout", equalTo(currentBooking.getBookingdates().getCheckout()))
+                .body("additionalneeds", equalTo(currentBooking.getAdditionalneeds()));
+    }
+
+    public void assertUpdateBookingFirstnameWithCookieAuthXML(ValidatableResponse response, NewBooking currentBooking) {
+        response
+                .assertThat()
+                .statusCode(HttpURLConnection.HTTP_OK)
+                .body("firstname", equalTo("Karla"))
+                .body("lastname", equalTo(currentBooking.getLastname()))
+                .body("totalprice", equalTo(currentBooking.getTotalprice()))
+                .body("depositpaid", equalTo(currentBooking.isDepositpaid()))
+                .body("bookingdates.checkin", equalTo(currentBooking.getBookingdates().getCheckin()))
+                .body("bookingdates.checkout", equalTo(currentBooking.getBookingdates().getCheckout()))
+                .body("additionalneeds", equalTo(currentBooking.getAdditionalneeds()));
+    }
+
+    public void assertUpdateBookingWithoutBasicAuthAndCookieXML(ValidatableResponse response, NewBooking currentBooking) {
+        response
+                .assertThat()
+                .statusCode(HttpURLConnection.HTTP_FORBIDDEN);
+    }
+
 }

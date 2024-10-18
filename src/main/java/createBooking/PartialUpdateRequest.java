@@ -199,4 +199,34 @@ public class PartialUpdateRequest extends Config {
                 .patch(BOOKING_PATH + "/" + id)
                 .then().log().all();
     }
+
+    // Updating with XML body
+    public ValidatableResponse partialUpdateBookingFirstnameWithBasicAuthXML(String id, String xmlBody) {
+        return specXML()
+                .header("Authorization", basicAuthorization)
+                .body(xmlBody)
+                .log().body()
+                .when()
+                .patch(BOOKING_PATH + "/" + id)
+                .then().log().all();
+    }
+
+    public ValidatableResponse partialUpdateBookingFirstnameWithCookieXML(String id, String xmlBody) {
+        return specXML()
+                .header("Cookie", "token=" + token)
+                .body(xmlBody)
+                .log().body()
+                .when()
+                .patch(BOOKING_PATH + "/" + id)
+                .then().log().all();
+    }
+
+    public ValidatableResponse partialUpdateBookingWithoutBasicAuthAndCookieXML(String id, String xmlBody) {
+        return specXML()
+                .body(xmlBody)
+                .log().body()
+                .when()
+                .patch(BOOKING_PATH + "/" + id)
+                .then().log().all();
+    }
 }
