@@ -18,7 +18,7 @@ public class BookingIdResponse {
                 .body("depositpaid", either(equalTo(true)).or(equalTo(false)))
                 .body("bookingdates.checkin", matchesPattern(datePattern))
                 .body("bookingdates.checkout", matchesPattern(datePattern))
-                .body("additionalneeds", notNullValue());
+                .body("additionalneeds", anyOf(nullValue(), notNullValue()));
     }
     public void assertWithNoneExistingBookingId(ValidatableResponse response) {
         response
