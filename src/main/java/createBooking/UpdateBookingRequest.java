@@ -4,9 +4,7 @@ import configPackage.Config;
 import io.restassured.response.ValidatableResponse;
 
 public class UpdateBookingRequest extends Config {
-    // что такое basic авторизация
 
-    // написать хелпер или утилиту (в отдельном классе) который создает basic хедер на основе имени пользотваеля и пароля
     private final String basicAuthorization = AuthUtil.createBasicAuthorization("admin", "password123");
     private String token;
 

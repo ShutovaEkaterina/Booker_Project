@@ -6,10 +6,8 @@ import java.net.HttpURLConnection;
 
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 public class UserResponse {
-    // todo проверить неиспозьзуемые параметры и методы
     public String assertAuthWithCorrectUsernameAndPassword(ValidatableResponse response) {
         response
                 .assertThat()

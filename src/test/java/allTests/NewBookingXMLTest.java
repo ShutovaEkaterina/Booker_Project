@@ -1,7 +1,5 @@
 package allTests;
 
-import createBooking.BookingDates;
-import createBooking.NewBooking;
 import createBooking.NewBookingRequest;
 import createBooking.NewBookingResponse;
 import io.restassured.response.ValidatableResponse;
@@ -12,7 +10,7 @@ public class NewBookingXMLTest {
     private final NewBookingResponse newBookingResponse = new NewBookingResponse();
 
     @Test
-    public void testCreateNewBookingWithAllFieldsXML() {
+    public void createNewBookingWithAllFieldsXMLTest() {
         String xmlBody = "<booking>\n" +
                 "    <firstname>Amanda</firstname>\n" +
                 "    <lastname>Smith</lastname>\n" +

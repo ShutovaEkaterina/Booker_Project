@@ -2,7 +2,6 @@ package deleteBooking;
 
 import configPackage.Config;
 import createBooking.AuthUtil;
-import createBooking.NewBooking;
 import io.restassured.response.ValidatableResponse;
 
 public class DeleteBookingRequest extends Config {

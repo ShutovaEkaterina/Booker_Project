@@ -12,7 +12,7 @@ public class NewBookingTest {
     private final NewBookingResponse newBookingResponse = new NewBookingResponse();
 
     @Test
-    public void testCreateNewBookingWithAllFields() {
+    public void createNewBookingWithAllFieldsTest() {
         BookingDates bookingdates = new BookingDates("2024-09-12", "2024-09-15");
         NewBooking newBooking = new NewBooking("Amanda", "Smith", 344, true, bookingdates, "Nothing needed");
 
@@ -26,7 +26,7 @@ public class NewBookingTest {
     }
 
     @Test
-    public void testCreateNewBookingWithEmptyAdditionalNeedsField() {
+    public void createNewBookingWithEmptyAdditionalNeedsFieldTest() {
         BookingDates bookingdates = new BookingDates("2024-09-12", "2024-09-15");
         NewBooking newBooking = new NewBooking("Amanda", "Smith", 344, true, bookingdates, "");
 
@@ -40,7 +40,7 @@ public class NewBookingTest {
     }
 
     @Test
-    public void testCreateNewBookingWithNullAdditionalNeedsField() {
+    public void createNewBookingWithNullAdditionalNeedsFieldTest() {
         BookingDates bookingdates = new BookingDates("2024-09-12", "2024-09-15");
         NewBooking newBooking = new NewBooking("Amanda", "Smith", 344, true, bookingdates, null);
 
@@ -55,7 +55,7 @@ public class NewBookingTest {
 
     // The test failed because the response contained an incorrect date format, and the status code was 200.
     @Test
-    public void testCreateNewBookingWithEmptyCheckoutDateField() {
+    public void createNewBookingWithEmptyCheckoutDateFieldTest() {
         BookingDates bookingdates = new BookingDates("2024-09-12", "");
         NewBooking newBooking = new NewBooking("Amanda", "Smith", 344, true, bookingdates, "Something");
 
@@ -70,7 +70,7 @@ public class NewBookingTest {
 
     // The test failed because the response contained an incorrect date format, and the status code was 200.
     @Test
-    public void testCreateNewBookingWithEmptyCheckinDateField() {
+    public void createNewBookingWithEmptyCheckinDateFieldTest() {
         BookingDates bookingdates = new BookingDates("", "2024-09-12");
         NewBooking newBooking = new NewBooking("Amanda", "Smith", 344, true, bookingdates, "Something");
 
@@ -85,7 +85,7 @@ public class NewBookingTest {
 
     // The test failed because the response contained an incorrect date format, and the status code was 200.
     @Test
-    public void testCreateNewBookingWithIncorrectFormatDates() {
+    public void createNewBookingWithIncorrectFormatDatesTest() {
         BookingDates bookingdates = new BookingDates("20-09-2024", "23-09-2024");
         NewBooking newBooking = new NewBooking("Amanda", "Smith", 344, true, bookingdates, "Something");
 
@@ -100,7 +100,7 @@ public class NewBookingTest {
 
     // The test failed because it returned a 200 status code
     @Test
-    public void testCreateNewBookingWithWrongDatesFields() {
+    public void createNewBookingWithWrongDatesFieldsTest() {
         BookingDates bookingdates = new BookingDates("2024-09-20", "2024-09-02");
         NewBooking newBooking = new NewBooking("Amanda", "Smith", 344, true, bookingdates, "Something");
 
@@ -115,7 +115,7 @@ public class NewBookingTest {
 
     // The test failed because it returned a 200 status code
     @Test
-    public void testCreateNewBookingWithDatesInThePast() {
+    public void createNewBookingWithDatesInThePastTest() {
         BookingDates bookingdates = new BookingDates("2020-03-20", "2020-03-30");
         NewBooking newBooking = new NewBooking("Amanda", "Smith", 344, true, bookingdates, "Something");
 
@@ -129,7 +129,7 @@ public class NewBookingTest {
     }
 
     @Test
-    public void testCreateNewBookingWithFalseDepositPaid() {
+    public void createNewBookingWithFalseDepositPaidTest() {
         BookingDates bookingdates = new BookingDates("2024-10-20", "2024-10-30");
         NewBooking newBooking = new NewBooking("Amanda", "Smith", 0, false, bookingdates, "Something");
 
@@ -144,7 +144,7 @@ public class NewBookingTest {
 
     // The test failed because it returned a 200 status code
     @Test
-    public void testCreateNewBookingWithZeroTotalPrice() {
+    public void createNewBookingWithZeroTotalPriceTest() {
         BookingDates bookingdates = new BookingDates("2024-10-20", "2024-10-30");
         NewBooking newBooking = new NewBooking("Amanda", "Smith", 0, false, bookingdates, "Something");
 
@@ -159,7 +159,7 @@ public class NewBookingTest {
 
     // The test failed because it returned a 200 status code
     @Test
-    public void testCreateNewBookingWithEmptyFirstname() {
+    public void createNewBookingWithEmptyFirstnameTest() {
         BookingDates bookingdates = new BookingDates("2024-10-20", "2024-10-30");
         NewBooking newBooking = new NewBooking("", "Smith", 12, false, bookingdates, "Something");
 
@@ -174,7 +174,7 @@ public class NewBookingTest {
 
     // The test failed because it returned a 200 status code
     @Test
-    public void testCreateNewBookingWithEmptyLastname() {
+    public void createNewBookingWithEmptyLastnameTest() {
         BookingDates bookingdates = new BookingDates("2024-10-20", "2024-10-30");
         NewBooking newBooking = new NewBooking("Amanda", "", 12, false, bookingdates, "Something");
 

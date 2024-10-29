@@ -1,7 +1,5 @@
 package authPackage;
 
-//отступы, название пакетов
-
 public class User {
     private String username;
     private String password;

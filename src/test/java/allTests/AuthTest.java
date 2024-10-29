@@ -12,9 +12,8 @@ public class AuthTest {
     private final UserRequest userRequest = new UserRequest();
     private final UserResponse userResponse = new UserResponse();
 
-//todo убрать получение токена
     @Test
-    public void testSuccessAuthUserWithCorrectUsernameAndPassword() {
+    public void successAuthUserWithCorrectUsernameAndPasswordTest() {
         User user = new User(username, password);
         ValidatableResponse response = userRequest.authUser(user);
         userResponse.assertAuthWithCorrectUsernameAndPassword(response);
@@ -22,7 +21,7 @@ public class AuthTest {
 
     // The test failed because it returned a 200 status code
    @Test
-   public void testAuthUserWithIncorrectUsername() {
+   public void authUserWithIncorrectUsernameTest() {
         User user = new User("pasha", password);
         ValidatableResponse response = userRequest.authUser(user);
         userResponse.assertAuthWithIncorrectUsername(response);
@@ -30,7 +29,7 @@ public class AuthTest {
 
     // The test failed because it returned a 200 status code
     @Test
-    public void testAuthUserWithIncorrectPassword() {
+    public void authUserWithIncorrectPasswordTest() {
         User user = new User(username, "1234");
         ValidatableResponse response = userRequest.authUser(user);
         userResponse.assertAuthWithIncorrectPassword(response);
@@ -38,7 +37,7 @@ public class AuthTest {
 
     // The test failed because it returned a 200 status code
     @Test
-    public void testAuthUserWithIncorrectUsernameAndPassword() {
+    public void authUserWithIncorrectUsernameAndPasswordTest() {
         User user = new User("tamara", "123456");
         ValidatableResponse response = userRequest.authUser(user);
         userResponse.assertAuthWithIncorrectUsernameAndPassword(response);
@@ -46,7 +45,7 @@ public class AuthTest {
 
     // The test failed because it returned a 200 status code
     @Test
-    public void testAuthUserWithoutUsername() {
+    public void authUserWithoutUsernameTest() {
         User user = new User("", "password123");
         ValidatableResponse response = userRequest.authUser(user);
         userResponse.assertAuthWithoutUsername(response);
@@ -54,7 +53,7 @@ public class AuthTest {
 
     // The test failed because it returned a 200 status code
     @Test
-    public void testAuthUserWithoutPassword() {
+    public void authUserWithoutPasswordTest() {
         User user = new User("admin", "");
         ValidatableResponse response = userRequest.authUser(user);
         userResponse.assertAuthWithoutPassword(response);
@@ -62,9 +61,7 @@ public class AuthTest {
 
     // The test failed because it returned a 200 status code
     @Test
-    public void testAuthUserWithoutUsernameAndPassword() {
-        // todo переделать на нужный конструктор
-        // todo убрать рандом
+    public void authUserWithoutUsernameAndPasswordTest() {
         User user = new User();
         ValidatableResponse response = userRequest.authUser(user);
         userResponse.assertAuthWithoutUsernameAndPassword(response);

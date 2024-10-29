@@ -2,7 +2,6 @@ package createBooking;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-// Booking
 public class NewBooking {
     private String firstname;
     private String lastname;
